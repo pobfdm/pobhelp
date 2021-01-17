@@ -1,0 +1,10 @@
+*.spec
+dist/
+build/
+__pycache__/
+.git/
+*.db
+Thumbs.db:encryptable
+backup.sh
+*.exe
+push-source.sh

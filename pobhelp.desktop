@@ -1,0 +1,10 @@
+[Desktop Entry] 
+Type=Application
+Name=Pobhelp
+GenericName=Pobhelp
+Comment=A simple gui for helpdesking. 
+Exec=pobhelp
+Icon=/usr/lib/pobhelp/lifesaver.png
+Terminal=FALSE
+StartupNotify=TRUE
+Categories=Utility;Network;

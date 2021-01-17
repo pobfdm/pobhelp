@@ -1,0 +1,23 @@
+# Maintainer: Fabio Di Matteo <pobfdm@gmail.com>
+pkgname=pobhelp-git
+pkgver=0.1
+pkgrel=1
+pkgdesc="A simple gui for help us. "
+arch=('any')
+url="https://github.com/pobfdm/pobhelp.git"
+license=('GPL')
+depends=('python-wxpython' 'python-urllib3' 'x11vnc' 'tigervnc')
+conflicts=('pobhelp')
+source=(https://github.com/pobfdm/pobhelp/archive/master.zip)
+md5sums=('SKIP') #generate with 'makepkg -g'
+
+
+
+package() {
+  mkdir -p "$pkgdir/usr/bin/"
+  mkdir -p "$pkgdir/usr/lib/pobhelp/"
+  mkdir -p "$pkgdir/usr/share/applications"
+  cp "$srcdir/pobhelp-master/pobhelp" "$pkgdir/usr/bin/"
+  cp -R "$srcdir/pobhelp-master/*" "$pkgdir/usr/lib/pobhelp/"
+  cp "$srcdir/pobhelp-master/"*.desktop "$pkgdir/usr/share/applications/"
+}
