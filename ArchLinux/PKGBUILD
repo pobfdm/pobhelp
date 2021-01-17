@@ -8,7 +8,7 @@ url="https://github.com/pobfdm/pobhelp.git"
 license=('GPL')
 depends=('python-wxpython' 'python-urllib3' 'x11vnc' 'tigervnc')
 conflicts=('pobhelp')
-source=(https://github.com/pobfdm/pobhelp/archive/master.zip)
+source=(https://github.com/pobfdm/pobhelp/archive/main.zip)
 md5sums=('SKIP') #generate with 'makepkg -g'
 
 
@@ -17,7 +17,7 @@ package() {
   mkdir -p "$pkgdir/usr/bin/"
   mkdir -p "$pkgdir/usr/lib/pobhelp/"
   mkdir -p "$pkgdir/usr/share/applications"
-  cp "$srcdir/pobhelp-master/pobhelp" "$pkgdir/usr/bin/"
-  cp -R "$srcdir/pobhelp-master/*" "$pkgdir/usr/lib/pobhelp/"
-  cp "$srcdir/pobhelp-master/"*.desktop "$pkgdir/usr/share/applications/"
+  cp "$srcdir/pobhelp-main/pobhelp" "$pkgdir/usr/bin/"
+  cp -R "$srcdir/pobhelp-main/"* "$pkgdir/usr/lib/pobhelp/"
+  cp "$srcdir/pobhelp-main/"*.desktop "$pkgdir/usr/share/applications/"
 }
