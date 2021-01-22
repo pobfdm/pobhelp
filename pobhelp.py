@@ -55,7 +55,8 @@ class dialogVpnClient(TdlgVpnClient):
 		if (os.name=="posix"):
 			os.system("pkexec kill -9 "+str(self.p.pid) )
 		elif (os.name=="nt"):
-			self.p.kill()
+			#self.p.kill()
+			os.system("taskkill /pid "+str(self.p.pid))
 			
 	def runProcessPosix(self,cmd):
 		self.p=subprocess.Popen(cmd.split(), bufsize=0 ,stdout=subprocess.PIPE)
@@ -67,7 +68,7 @@ class dialogVpnClient(TdlgVpnClient):
 		wx.CallAfter(self.btConnect.Enable, True)
 	
 	def runProcessWin(self,cmd):
-		self.p=subprocess.Popen(cmd.split(), bufsize=0 ,stdout=subprocess.PIPE)
+		self.p=subprocess.Popen(cmd.split(), shell=True,bufsize=0 ,stdout=subprocess.PIPE)
 		wx.CallAfter(self.btConnect.Enable, False)
 		while self.p.poll() is None :
 			out = self.p.stdout.readline().decode("utf-8")
