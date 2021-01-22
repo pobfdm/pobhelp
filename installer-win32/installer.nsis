@@ -66,6 +66,9 @@ Section "Install"
 	;Register tightvnc service
 	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -install -silent'
 	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -start -silent'
+	
+	;Driver tap for openvpn
+	Exec '"$INSTDIR\Openvpn-bundle\tap-windows-setup.exe"'
 	            
 	
 SectionEnd 
