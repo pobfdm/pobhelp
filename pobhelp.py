@@ -6,7 +6,7 @@ from guiUtils import *
 import subprocess,os, urllib3 ,threading, ctypes,socket,time
 
 # Python deps: wxpython4, urllib3, psutil(only win32)
-# Linux deps: x11vnc,tigervnc,openvpn
+# Linux deps: x11vnc,tigervnc,openvpn,pkexec(polkit)
 # Windows deps: all included in bundle
 
 VERSION="0.1"
@@ -55,26 +55,27 @@ class dialogVpnClient(TdlgVpnClient):
 		if (os.name=="posix"):
 			os.system("pkexec kill -9 "+str(self.p.pid) )
 		elif (os.name=="nt"):
-			#self.p.kill()
-			os.system("taskkill /pid "+str(self.p.pid))
+			os.system("taskkill /T /F /pid "+str(self.p.pid))
 			
 	def runProcessPosix(self,cmd):
-		self.p=subprocess.Popen(cmd.split(), bufsize=0 ,stdout=subprocess.PIPE)
+		self.p=subprocess.Popen(cmd, bufsize=0 ,stdout=subprocess.PIPE)
 		wx.CallAfter(self.btConnect.Enable, False)
 		while self.p.poll() is None :
 			out = self.p.stdout.readline().decode("utf-8")
 			wx.CallAfter(self.txtVpn.WriteText,out)
 		
 		wx.CallAfter(self.btConnect.Enable, True)
+		wx.CallAfter(self.txtVpn.WriteText,"*** VPN terminated. ***")
 	
 	def runProcessWin(self,cmd):
-		self.p=subprocess.Popen(cmd.split(), shell=True,bufsize=0 ,stdout=subprocess.PIPE)
+		self.p=subprocess.Popen(cmd, shell=True,bufsize=0 ,stdout=subprocess.PIPE)
 		wx.CallAfter(self.btConnect.Enable, False)
 		while self.p.poll() is None :
 			out = self.p.stdout.readline().decode("utf-8")
 			wx.CallAfter(self.txtVpn.WriteText,out)
 		
-		wx.CallAfter(self.btConnect.Enable, True)							
+		wx.CallAfter(self.btConnect.Enable, True)
+		wx.CallAfter(self.txtVpn.WriteText,"*** VPN terminated. ***")							
 	
 	def setConn(self,event):
 		host=self.entryHostVpn.GetValue()
@@ -84,13 +85,14 @@ class dialogVpnClient(TdlgVpnClient):
 		if (self.chkServerMode.GetValue()==False):
 		#Client Mode Vpn
 			if (os.name=="posix"):
-				cmd="pkexec openvpn --secret "+getScriptDir()+"/static.key --remote "+host+" --port "+port+" --dev tun --ifconfig 10.10.10.2 10.10.10.1 --keepalive 10 60 --ping-timer-rem --persist-tun --persist-key"
+				cmd=["pkexec" ,"openvpn" ,"--cd",getScriptDir(), "--config", "client.ovpn", "--remote", host ,port]
 				thCmd = threading.Thread(target=self.runProcessPosix,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
 				
 			elif (os.name=="nt"):
-				cmd=getScriptDir()+"\Openvpn-bundle\openvpn.exe  --secret "+getScriptDir()+"/static.key --remote "+host+" --port "+port+" --dev tun --ifconfig 10.10.10.2 10.10.10.1 --keepalive 10 60 --ping-timer-rem --persist-tun --persist-key"	
+				cmd=[getScriptDir()+"\Openvpn-bundle\openvpn.exe" ,"--cd",getScriptDir(), "--config", "client.ovpn", "--remote", host ,port]
+				print(cmd)	
 				thCmd = threading.Thread(target=self.runProcessWin,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
@@ -98,13 +100,13 @@ class dialogVpnClient(TdlgVpnClient):
 		else:
 		#Server mode Vpn
 			if (os.name=="posix"):
-				cmd="pkexec openvpn  --secret "+getScriptDir()+"/static.key  --ifconfig 10.10.10.1 10.10.10.2 --dev tun --keepalive 10 60 --ping-timer-rem --persist-tun --persist-key --port "+port 
+				cmd=["pkexec" ,"openvpn" ,"--cd",getScriptDir(), "--config", "server.ovpn", "--port", port]
 				thCmd = threading.Thread(target=self.runProcessPosix,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
 				
 			elif (os.name=="nt"):
-				cmd=getScriptDir()+"\Openvpn-bundle\openvpn.exe   --secret "+getScriptDir()+"/static.key  --ifconfig 10.10.10.1 10.10.10.2 --dev tun --keepalive 10 60 --ping-timer-rem --persist-tun --persist-key --port "+port 
+				cmd=[getScriptDir()+"\Openvpn-bundle\openvpn.exe" ,"--cd",getScriptDir(), "--config", "server.ovpn", "--port", port]
 				thCmd = threading.Thread(target=self.runProcessWin,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()

@@ -11,21 +11,26 @@ Name "Pobhelp"
  
  
 ;Banner laterale
-;!define MUI_WELCOMEFINISHPAGE_BITMAP "banner.bmp"    ;immagine per la pagina di benvenuto
-;!define MUI_HEADERIMAGE							  ;Usa immagine d'intestazione
-;!define MUI_HEADERIMAGE_BITMAP "./lifesaver.png"		  ;immagine d'intestazione per le varie schermate	
+!define MUI_WELCOMEFINISHPAGE_BITMAP "banner.bmp"    
+!define MUI_HEADERIMAGE							  
+!define MUI_HEADERIMAGE_BITMAP "header.bmp"		  
  
 ; Il nome del file dell'installatore
 !define /date MyTIMESTAMP "%Y-%m-%d"
 OutFile "./Pobhelp_Setup_${MyTIMESTAMP}.exe"
- 
-;Le varie "pagine" da visualizzare (Benvenuto, licenza, scelta cartella,conclusione etc...)
+
+
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "LICENSE"
-!insertmacro MUI_PAGE_DIRECTORY
-;!insertmacro MUI_PAGE_COMPONENTS
-!insertmacro MUI_PAGE_INSTFILES
-!insertmacro MUI_PAGE_FINISH
+Page license 
+Page components
+Page directory
+Page instfiles
+
+LicenseData "LICENSE"
+
+
+
+ 
  
 ;Lingue nelle quali deve essere disponibile l'installer
 !insertmacro MUI_LANGUAGE "English"
@@ -34,6 +39,8 @@ OutFile "./Pobhelp_Setup_${MyTIMESTAMP}.exe"
 !insertmacro MUI_LANGUAGE "Italian"
  
  
+
+
  
 ; La directory di installazione predefinita
 InstallDir $PROGRAMFILES\Pobhelp
@@ -44,7 +51,7 @@ InstallDir $PROGRAMFILES\Pobhelp
 ;--------------------------------
  
 ; La sezione dedicata all'installazione
-Section "Install" 
+Section "Pobhelp" 
  
 	; Setto la directory dove mettere i file da questo momento in poi
 	; (se la directory non esiste, la creera') e copio i file.
@@ -63,16 +70,27 @@ Section "Install"
 	; Informiamo il compilatore che sara' presente una sezione per il disinstallatore  
 	WriteUninstaller $INSTDIR\Uninstall.exe
 	
-	;Register tightvnc service
-	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -install -silent'
-	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -start -silent'
 	
-	;Driver tap for openvpn
-	Exec '"$INSTDIR\Openvpn-bundle\tap-windows-setup.exe"'
+	
 	            
 	
 SectionEnd 
  
+
+Section "TightVNC service"
+	;Register tightvnc service
+	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -install -silent'
+	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -start -silent'
+	
+SectionEnd
+
+
+Section "Tap Driver for openvpn"
+	;Driver tap for openvpn
+	Exec '"$INSTDIR\Openvpn-bundle\tap-windows-setup.exe"'
+
+SectionEnd
+
 
 
 ;Entry per Add/Remove
