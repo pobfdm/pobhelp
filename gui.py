@@ -184,6 +184,8 @@ class TdlgVpnClient ( wx.Dialog ):
 		self.Centre( wx.BOTH )
 
 		# Connect Events
+		self.txtVpn.Bind( wx.EVT_TEXT, self.onText )
+		self.txtVpn.Bind( wx.EVT_TEXT_ENTER, self.onText )
 		self.btCancel.Bind( wx.EVT_BUTTON, self.stopProcess )
 		self.btConnect.Bind( wx.EVT_BUTTON, self.setConn )
 
@@ -192,6 +194,10 @@ class TdlgVpnClient ( wx.Dialog ):
 
 
 	# Virtual event handlers, overide them in your derived class
+	def onText( self, event ):
+		event.Skip()
+
+
 	def stopProcess( self, event ):
 		event.Skip()
 

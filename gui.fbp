@@ -1051,6 +1051,8 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style">wxVSCROLL|wxHSCROLL|wxNO_BORDER|wxWANTS_CHARS</property>
+                        <event name="OnText">onText</event>
+                        <event name="OnTextEnter">onText</event>
                     </object>
                 </object>
                 <object class="sizeritem" expanded="1">

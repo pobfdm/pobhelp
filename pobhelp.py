@@ -51,6 +51,10 @@ class dialogVpnClient(TdlgVpnClient):
 	p=None
 	
 	
+	def onText(self,evt):
+		p=self.txtVpn.GetCaretPosition()
+		self.txtVpn.ScrollIntoView(p,wx.WXK_END)
+	
 	def stopProcess(self,evt):
 		if (os.name=="posix"):
 			os.system("pkexec kill -9 "+str(self.p.pid) )
@@ -62,7 +66,9 @@ class dialogVpnClient(TdlgVpnClient):
 		wx.CallAfter(self.btConnect.Enable, False)
 		while self.p.poll() is None :
 			out = self.p.stdout.readline().decode("utf-8")
-			wx.CallAfter(self.txtVpn.WriteText,out)
+			if (out) :
+				wx.CallAfter(self.txtVpn.WriteText,out)
+				
 		
 		wx.CallAfter(self.btConnect.Enable, True)
 		wx.CallAfter(self.txtVpn.WriteText,"*** VPN terminated. ***")
@@ -72,7 +78,8 @@ class dialogVpnClient(TdlgVpnClient):
 		wx.CallAfter(self.btConnect.Enable, False)
 		while self.p.poll() is None :
 			out = self.p.stdout.readline().decode("utf-8")
-			wx.CallAfter(self.txtVpn.WriteText,out)
+			if (out) :
+				wx.CallAfter(self.txtVpn.WriteText,out)
 		
 		wx.CallAfter(self.btConnect.Enable, True)
 		wx.CallAfter(self.txtVpn.WriteText,"*** VPN terminated. ***")							
