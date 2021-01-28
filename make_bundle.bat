@@ -1,4 +1,4 @@
-pyinstaller -w -i lifesaver.ico pobhelp.py
+pyinstaller --noconfirm -w -i lifesaver.ico pobhelp.py
 copy lifesaver* .\dist\pobhelp\
 copy static.key .\dist\pobhelp\
 copy *.ovpn .\dist\pobhelp\

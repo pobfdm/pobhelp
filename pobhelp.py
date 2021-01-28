@@ -2,10 +2,11 @@
 
 import wx,wx.html,sys
 from gui import *
+from ftpd import *
 from guiUtils import *
 import subprocess,os, urllib3 ,threading, ctypes,socket,time
 
-# Python deps: wxpython4, urllib3, psutil(only win32)
+# Python deps: wxpython4, urllib3, pyftpdlib, psutil(only win32)
 # Linux deps: x11vnc,tigervnc,openvpn,pkexec(polkit)
 # Windows deps: all included in bundle
 
@@ -35,13 +36,31 @@ def getConfigDirPath():
 	else:
 		configDir=home+"/.config/pobhelp/"
 	
-	return configDir 
+	return configDir
+
+def getHomePath():
+	from os.path import expanduser
+	home = expanduser("~")
+	if sys.platform == 'win32': 
+		configDir=home
+	elif  sys.platform == 'linux':
+		configDir=home
+	elif sys.platform== "darwin":
+		configDir=home
+	else:
+		configDir=home
+	
+	return configDir 	 
 
 def getScriptDir():
 	if getattr(sys, 'frozen', False):
 		return sys._MEIPASS
 	else:
 		return os.path.dirname(os.path.abspath(__file__))
+
+
+
+
 
 
 
@@ -120,6 +139,7 @@ class dialogVpnClient(TdlgVpnClient):
 	
 class mainWin(TPobhelpGui):
 	clientVpn=None
+	ftpdDialog=None
 	
 	
 	
@@ -322,8 +342,10 @@ class mainWin(TPobhelpGui):
 				
 		
 	def runVpnClient(self,event):
-		
 		self.clientVpn.Show()
+	
+	def	runFTPDdialog(self, event):
+		self.ftpdDialog.Show()
 		
 			
 if __name__ == '__main__':
@@ -345,6 +367,13 @@ if __name__ == '__main__':
 	app = wx.App()
 	win = mainWin(None)
 	win.clientVpn=dialogVpnClient(win)
+	win.ftpdDialog=dlgFTPD(win)
+	
+	win.ftpdDialog.entryUser.SetValue("admin")
+	win.ftpdDialog.entryPassword.SetValue("admin")
+	win.ftpdDialog.entryPort.SetValue("2121")
+	win.ftpdDialog.dirPkrFTPRoot.SetPath(getHomePath())
+	
 	
 	try:
 		os.makedirs( getConfigDirPath(), 0o755 );

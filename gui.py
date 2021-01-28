@@ -74,10 +74,16 @@ class TPobhelpGui ( wx.Frame ):
 		self.m_menubar1.Append( self.mnuFile, u"File" )
 
 		self.mnuVpn = wx.Menu()
-		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Start a vpn ", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Start/Stop vpn ", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuVpn.Append( self.mnuItemStartVpnClient )
 
 		self.m_menubar1.Append( self.mnuVpn, u"Vpn" )
+
+		self.mnuServers = wx.Menu()
+		self.mnuFTPserver = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"FTP server", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuServers.Append( self.mnuFTPserver )
+
+		self.m_menubar1.Append( self.mnuServers, u"Servers" )
 
 		self.mnuHelp = wx.Menu()
 		self.mnuItemAbout = wx.MenuItem( self.mnuHelp, wx.ID_ANY, u"About", wx.EmptyString, wx.ITEM_NORMAL )
@@ -97,6 +103,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.btDisconnect.Bind( wx.EVT_BUTTON, self.disconnect )
 		self.Bind( wx.EVT_MENU, self.quit, id = self.manuItemQuit.GetId() )
 		self.Bind( wx.EVT_MENU, self.runVpnClient, id = self.mnuItemStartVpnClient.GetId() )
+		self.Bind( wx.EVT_MENU, self.runFTPDdialog, id = self.mnuFTPserver.GetId() )
 		self.Bind( wx.EVT_MENU, self.onAbout, id = self.mnuItemAbout.GetId() )
 
 	def __del__( self ):
@@ -118,6 +125,9 @@ class TPobhelpGui ( wx.Frame ):
 
 
 	def runVpnClient( self, event ):
+		event.Skip()
+
+	def runFTPDdialog( self, event ):
 		event.Skip()
 
 	def onAbout( self, event ):
@@ -164,6 +174,17 @@ class TdlgVpnClient ( wx.Dialog ):
 		self.chkServerMode = wx.CheckBox( self, wx.ID_ANY, u"Server mode", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer3.Add( self.chkServerMode, 0, wx.ALL, 5 )
 
+		bSizerInfo = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn).", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTER_HORIZONTAL )
+		self.m_staticText10.SetLabelMarkup( u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn)." )
+		self.m_staticText10.Wrap( -1 )
+
+		bSizerInfo.Add( self.m_staticText10, 1, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+
+		bSizer3.Add( bSizerInfo, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.EXPAND, 5 )
+
 		bSizer5 = wx.BoxSizer( wx.HORIZONTAL )
 
 		self.btCancel = wx.Button( self, wx.ID_ANY, u"Cancel", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -202,6 +223,112 @@ class TdlgVpnClient ( wx.Dialog ):
 		event.Skip()
 
 	def setConn( self, event ):
+		event.Skip()
+
+
+###########################################################################
+## Class TdlgFTPD
+###########################################################################
+
+class TdlgFTPD ( wx.Dialog ):
+
+	def __init__( self, parent ):
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 691,462 ), style = wx.DEFAULT_DIALOG_STYLE )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer6 = wx.BoxSizer( wx.VERTICAL )
+
+		bSizerUserPassword = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"User:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText7.Wrap( -1 )
+
+		bSizerUserPassword.Add( self.m_staticText7, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.entryUser = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizerUserPassword.Add( self.entryUser, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Password:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText8.Wrap( -1 )
+
+		bSizerUserPassword.Add( self.m_staticText8, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PASSWORD )
+		bSizerUserPassword.Add( self.entryPassword, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+
+		bSizer6.Add( bSizerUserPassword, 1, wx.EXPAND, 5 )
+
+		bSizerPortAndRoot = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblPort.Wrap( -1 )
+
+		bSizerPortAndRoot.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizerPortAndRoot.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Root folder:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText6.Wrap( -1 )
+
+		bSizerPortAndRoot.Add( self.m_staticText6, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.dirPkrFTPRoot = wx.DirPickerCtrl( self, wx.ID_ANY, wx.EmptyString, u"Select a folder", wx.DefaultPosition, wx.DefaultSize, wx.DIRP_CHANGE_DIR|wx.DIRP_DEFAULT_STYLE|wx.DIRP_DIR_MUST_EXIST|wx.DIRP_SMALL|wx.DIRP_USE_TEXTCTRL )
+		bSizerPortAndRoot.Add( self.dirPkrFTPRoot, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+
+		bSizer6.Add( bSizerPortAndRoot, 1, wx.EXPAND, 5 )
+
+		bSizerOutput = wx.BoxSizer( wx.VERTICAL )
+
+		self.txtOutput = wx.richtext.RichTextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY|wx.VSCROLL|wx.HSCROLL|wx.NO_BORDER|wx.WANTS_CHARS )
+		self.txtOutput.SetMinSize( wx.Size( -1,500 ) )
+
+		bSizerOutput.Add( self.txtOutput, 1, wx.EXPAND |wx.ALL, 5 )
+
+
+		bSizer6.Add( bSizerOutput, 1, wx.EXPAND, 5 )
+
+		bSizerStartStop = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.btStop = wx.Button( self, wx.ID_ANY, u"Stop", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStop.Enable( False )
+
+		bSizerStartStop.Add( self.btStop, 1, wx.ALL, 5 )
+
+		self.btStart = wx.Button( self, wx.ID_ANY, u"Start", wx.DefaultPosition, wx.DefaultSize, 0 )
+
+		self.btStart.SetDefault()
+		bSizerStartStop.Add( self.btStart, 1, wx.ALL, 5 )
+
+
+		bSizer6.Add( bSizerStartStop, 0, wx.EXPAND, 5 )
+
+
+		self.SetSizer( bSizer6 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.txtOutput.Bind( wx.EVT_TEXT, self.onText )
+		self.btStop.Bind( wx.EVT_BUTTON, self.stopServer )
+		self.btStart.Bind( wx.EVT_BUTTON, self.startServer )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def onText( self, event ):
+		event.Skip()
+
+	def stopServer( self, event ):
+		event.Skip()
+
+	def startServer( self, event ):
 		event.Skip()
 
 
