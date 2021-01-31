@@ -264,6 +264,16 @@ class mainWin(TPobhelpGui):
 		if not (self.entryHost.GetValue() and self.entryPort.GetValue()):
 			Warn(self,"Fill host and port please!", 'Warning')
 			return
+		
+		if (self.chkVpnMode.GetValue()==True):
+			win.clientVpn.entryHostVpn.SetValue(self.entryHost.GetValue())
+			win.clientVpn.entryPortVpn.SetValue(self.entryPort.GetValue())
+			win.clientVpn.setConn(None)
+			if (win.clientVpn.chkServerMode.GetValue()==False):
+				 self.entryHost.SetValue("10.10.10.1")
+			else:
+				self.entryHost.SetValue("10.10.10.2")
+				
 		self.btConnect.Disable()
 		self.btDisconnect.Enable()
 		self.entryHost.Disable()
@@ -373,6 +383,10 @@ if __name__ == '__main__':
 	win.ftpdDialog.entryPassword.SetValue("admin")
 	win.ftpdDialog.entryPort.SetValue("2121")
 	win.ftpdDialog.dirPkrFTPRoot.SetPath(getHomePath())
+	
+	
+	
+	
 	
 	
 	try:

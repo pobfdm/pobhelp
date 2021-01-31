@@ -18,7 +18,7 @@ import wx.richtext
 class TPobhelpGui ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"PobHelp", pos = wx.DefaultPosition, size = wx.Size( 318,507 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"PobHelp", pos = wx.DefaultPosition, size = wx.Size( 318,540 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
@@ -30,11 +30,15 @@ class TPobhelpGui ( wx.Frame ):
 
 		bSizer2 = wx.BoxSizer( wx.HORIZONTAL )
 
+		bSizer2.SetMinSize( wx.Size( -1,60 ) )
 		self.chkListen = wx.CheckBox( self, wx.ID_ANY, u"Give help", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer2.Add( self.chkListen, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
+		self.chkVpnMode = wx.CheckBox( self, wx.ID_ANY, u"Vpnmode", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer2.Add( self.chkVpnMode, 0, wx.ALL|wx.EXPAND, 5 )
 
-		bSizer1.Add( bSizer2, 1, wx.EXPAND, 5 )
+
+		bSizer1.Add( bSizer2, 0, wx.EXPAND, 5 )
 
 		self.lblHost = wx.StaticText( self, wx.ID_ANY, u"Hostname", wx.Point( -1,-1 ), wx.DefaultSize, 0 )
 		self.lblHost.Wrap( -1 )
@@ -141,7 +145,7 @@ class TPobhelpGui ( wx.Frame ):
 class TdlgVpnClient ( wx.Dialog ):
 
 	def __init__( self, parent ):
-		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"VpnClient", pos = wx.DefaultPosition, size = wx.Size( 703,367 ), style = wx.DEFAULT_DIALOG_STYLE )
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Vpn manager", pos = wx.DefaultPosition, size = wx.Size( 703,367 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 

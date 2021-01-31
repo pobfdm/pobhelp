@@ -93,8 +93,8 @@ class dlgFTPD(TdlgFTPD):
 		self.server.max_cons = 256
 		self.server.max_cons_per_ip = 5
 
-		self.server.serve_forever()		
-	
+		
+		self.server.serve_forever()
 	
 	
 	def startServer(self,evt):
