@@ -34,9 +34,6 @@ class TPobhelpGui ( wx.Frame ):
 		self.chkListen = wx.CheckBox( self, wx.ID_ANY, u"Give help", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer2.Add( self.chkListen, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
-		self.chkVpnMode = wx.CheckBox( self, wx.ID_ANY, u"Vpnmode", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer2.Add( self.chkVpnMode, 0, wx.ALL|wx.EXPAND, 5 )
-
 
 		bSizer1.Add( bSizer2, 0, wx.EXPAND, 5 )
 

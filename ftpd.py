@@ -87,7 +87,7 @@ class dlgFTPD(TdlgFTPD):
 
 		self.handler.banner = "[Pobhelp] Pyftpdlib based ftpd ready."
 
-		address = ('', self.entryPort.GetValue())
+		address = ('0.0.0.0', self.entryPort.GetValue())
 		self.server = FTPServer(address, self.handler)
 
 		self.server.max_cons = 256
