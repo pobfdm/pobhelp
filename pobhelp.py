@@ -265,6 +265,12 @@ class mainWin(TPobhelpGui):
 			Warn(self,"Fill host and port please!", 'Warning')
 			return
 		
+		if (self.chkVpnMode.GetValue()==True):
+			win.clientVpn.entryHostVpn.SetValue(self.entryHost.GetValue())
+			win.clientVpn.entryPortVpn.SetValue(self.entryPort.GetValue())
+			win.clientVpn.setConn(None)
+				
+		
 		self.btConnect.Disable()
 		self.btDisconnect.Enable()
 		self.entryHost.Disable()

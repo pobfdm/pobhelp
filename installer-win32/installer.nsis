@@ -119,10 +119,22 @@ Section "un.Uninstall"
 	Delete "$SMPROGRAMS\Pobhelp\uninstall.lnk" 
 	RMDIR  "$SMPROGRAMS\Pobhelp"
 	
-	; Unregister tightvnc service
-	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -stop -silent'
-	Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -remove -silent'
+	
 	
 	Delete "$desktop\Pobhelp.lnk"
+	
+SectionEnd
+
+
+Section "un.TightVNC service remove"
+	MessageBox MB_YESNO "Remove TightVNC?" IDYES true IDNO false
+	true:
+	  ; Unregister tightvnc service
+		Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -stop -silent'
+		Exec '"$INSTDIR\TightVNC-bundle\tvnserver.exe" -remove -silent'
+	  
+	false:
+	  DetailPrint "TightVNC will not be removed ."
+	
 	
 SectionEnd

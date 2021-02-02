@@ -34,6 +34,11 @@ class TPobhelpGui ( wx.Frame ):
 		self.chkListen = wx.CheckBox( self, wx.ID_ANY, u"Give help", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer2.Add( self.chkListen, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
+		self.chkVpnMode = wx.CheckBox( self, wx.ID_ANY, u"VPN", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.chkVpnMode.SetToolTip( u"VPN upd" )
+
+		bSizer2.Add( self.chkVpnMode, 0, wx.ALL|wx.EXPAND, 5 )
+
 
 		bSizer1.Add( bSizer2, 0, wx.EXPAND, 5 )
 
@@ -75,7 +80,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.m_menubar1.Append( self.mnuFile, u"File" )
 
 		self.mnuVpn = wx.Menu()
-		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Start/Stop vpn ", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Vpn client/server", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuVpn.Append( self.mnuItemStartVpnClient )
 
 		self.m_menubar1.Append( self.mnuVpn, u"Vpn" )
