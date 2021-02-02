@@ -119,8 +119,6 @@ Section "un.Uninstall"
 	Delete "$SMPROGRAMS\Pobhelp\uninstall.lnk" 
 	RMDIR  "$SMPROGRAMS\Pobhelp"
 	
-	
-	
 	Delete "$desktop\Pobhelp.lnk"
 	
 SectionEnd

@@ -21,6 +21,7 @@ class TPobhelpGui ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"PobHelp", pos = wx.DefaultPosition, size = wx.Size( 318,540 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
@@ -91,6 +92,12 @@ class TPobhelpGui ( wx.Frame ):
 
 		self.m_menubar1.Append( self.mnuServers, u"Servers" )
 
+		self.mnuTools = wx.Menu()
+		self.mnuItemBlackboard = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Blackboard", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuTools.Append( self.mnuItemBlackboard )
+
+		self.m_menubar1.Append( self.mnuTools, u"Tools" )
+
 		self.mnuHelp = wx.Menu()
 		self.mnuItemAbout = wx.MenuItem( self.mnuHelp, wx.ID_ANY, u"About", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuHelp.Append( self.mnuItemAbout )
@@ -110,6 +117,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.quit, id = self.manuItemQuit.GetId() )
 		self.Bind( wx.EVT_MENU, self.runVpnClient, id = self.mnuItemStartVpnClient.GetId() )
 		self.Bind( wx.EVT_MENU, self.runFTPDdialog, id = self.mnuFTPserver.GetId() )
+		self.Bind( wx.EVT_MENU, self.showBlackboard, id = self.mnuItemBlackboard.GetId() )
 		self.Bind( wx.EVT_MENU, self.onAbout, id = self.mnuItemAbout.GetId() )
 
 	def __del__( self ):
@@ -134,6 +142,9 @@ class TPobhelpGui ( wx.Frame ):
 		event.Skip()
 
 	def runFTPDdialog( self, event ):
+		event.Skip()
+
+	def showBlackboard( self, event ):
 		event.Skip()
 
 	def onAbout( self, event ):
@@ -336,5 +347,52 @@ class TdlgFTPD ( wx.Dialog ):
 
 	def startServer( self, event ):
 		event.Skip()
+
+
+###########################################################################
+## Class TfrmBlackboard
+###########################################################################
+
+class TfrmBlackboard ( wx.Frame ):
+
+	def __init__( self, parent ):
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Blackboard", pos = wx.DefaultPosition, size = wx.Size( 682,507 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
+
+		bSizer12 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"Write here:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText10.Wrap( -1 )
+
+		bSizer12.Add( self.m_staticText10, 0, wx.ALL, 5 )
+
+		self.txtBlackboard = wx.richtext.RichTextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.VSCROLL|wx.HSCROLL|wx.NO_BORDER|wx.WANTS_CHARS )
+		self.txtBlackboard.SetFont( wx.Font( 18, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+		bSizer12.Add( self.txtBlackboard, 1, wx.EXPAND |wx.ALL, 5 )
+
+		self.btClose = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer12.Add( self.btClose, 0, wx.ALL|wx.ALIGN_RIGHT, 5 )
+
+
+		self.SetSizer( bSizer12 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.Bind( wx.EVT_CLOSE, self.onclose )
+		self.btClose.Bind( wx.EVT_BUTTON, self.onclose )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def onclose( self, event ):
+		event.Skip()
+
 
 

@@ -60,7 +60,10 @@ def getScriptDir():
 
 
 
-
+class frmblackboard(TfrmBlackboard):
+	
+	def onclose(self,evt):
+		self.Hide()
 
 
 
@@ -140,8 +143,10 @@ class dialogVpnClient(TdlgVpnClient):
 class mainWin(TPobhelpGui):
 	clientVpn=None
 	ftpdDialog=None
+	blackboard=None
 	
-	
+	def showBlackboard(self,evt):
+		self.blackboard.Show()
 	
 	def onAbout(self, evt):
 		import wx.adv
@@ -156,6 +161,8 @@ class mainWin(TPobhelpGui):
 		aboutInfo.AddDeveloper("Fabio Di Matteo - fadimatteo@gmail.com")
 		#aboutInfo.AddArtist("")
 		wx.adv.AboutBox(aboutInfo)
+		
+		
 	
 	def getPublicIpRaw(self):
 		url = "http://api.ipify.org/?format=raw"
@@ -381,7 +388,8 @@ if __name__ == '__main__':
 	win.ftpdDialog.entryPort.SetValue("2121")
 	win.ftpdDialog.dirPkrFTPRoot.SetPath(getHomePath())
 	
-	
+	win.blackboard=frmblackboard(win)
+	win.blackboard.SetIcon(wx.Icon(getScriptDir()+"/lifesaver.ico"))
 	
 	
 	
