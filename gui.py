@@ -21,7 +21,7 @@ class TPobhelpGui ( wx.Frame ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"PobHelp", pos = wx.DefaultPosition, size = wx.Size( 318,540 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
-		self.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+		self.SetFont( wx.Font( 10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Ubuntu" ) )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
@@ -361,23 +361,23 @@ class TfrmBlackboard ( wx.Frame ):
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
-		bSizer12 = wx.BoxSizer( wx.VERTICAL )
+		bSizerTxtBlackboard = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"Write here:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText10.Wrap( -1 )
 
-		bSizer12.Add( self.m_staticText10, 0, wx.ALL, 5 )
+		bSizerTxtBlackboard.Add( self.m_staticText10, 0, wx.ALL, 5 )
 
 		self.txtBlackboard = wx.richtext.RichTextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.VSCROLL|wx.HSCROLL|wx.NO_BORDER|wx.WANTS_CHARS )
 		self.txtBlackboard.SetFont( wx.Font( 18, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 
-		bSizer12.Add( self.txtBlackboard, 1, wx.EXPAND |wx.ALL, 5 )
+		bSizerTxtBlackboard.Add( self.txtBlackboard, 1, wx.EXPAND |wx.ALL, 5 )
 
 		self.btClose = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer12.Add( self.btClose, 0, wx.ALL|wx.ALIGN_RIGHT, 5 )
+		bSizerTxtBlackboard.Add( self.btClose, 0, wx.ALL|wx.ALIGN_RIGHT, 5 )
 
 
-		self.SetSizer( bSizer12 )
+		self.SetSizer( bSizerTxtBlackboard )
 		self.Layout()
 
 		self.Centre( wx.BOTH )

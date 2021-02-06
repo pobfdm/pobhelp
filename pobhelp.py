@@ -144,6 +144,8 @@ class mainWin(TPobhelpGui):
 	clientVpn=None
 	ftpdDialog=None
 	blackboard=None
+	p=None
+	
 	
 	def showBlackboard(self,evt):
 		self.blackboard.Show()
@@ -183,10 +185,10 @@ class mainWin(TPobhelpGui):
 		
 		if (self.chkListen.GetValue()==True):
 			#Listen Mode
-			p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
+			self.p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
 			
-			while p.poll() is None :
-				line = p.stderr.readline()
+			while self.p.poll() is None :
+				line = self.p.stderr.readline()
 				if ("Listening" in str(line)):
 					wx.CallAfter(self.statusBar.SetStatusText, "Listening...")
 					
@@ -197,10 +199,10 @@ class mainWin(TPobhelpGui):
 			wx.CallAfter(self.entryPort.Enable, True)
 		else:
 			#Connect Mode
-			p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
+			self.p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
 			
-			while p.poll() is None :
-				line = p.stderr.readline()
+			while self.p.poll() is None :
+				line = self.p.stderr.readline()
 				if ("link_rate" in str(line)):
 					wx.CallAfter(self.statusBar.SetStatusText, "Connected.")
 					
@@ -295,6 +297,7 @@ class mainWin(TPobhelpGui):
 			
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnviewer.exe", "-listen", "-port",self.entryPort.GetValue()])
+				self.entryPort.SetValue("5500")
 				thCmd = threading.Thread(target=self.runCmdWin ,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
@@ -332,10 +335,11 @@ class mainWin(TPobhelpGui):
 			
 			
 			if (os.name=="posix"):
-				cmd=(["killall","vncviewer"])
-				thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-				thCmd.daemon = True
-				thCmd.start()
+				#cmd=(["killall","vncviewer"])
+				#thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
+				#thCmd.daemon = True
+				#thCmd.start()
+				self.p.kill()
 			
 			elif (os.name=="nt"):
 				cmd=(["taskkill","/im","tvnviewer.exe","/f"])	
