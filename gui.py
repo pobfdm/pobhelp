@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version 3.9.0 Jan 21 2021)
+## Python code generated with wxFormBuilder (version 3.9.0 Aug  5 2021)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO *NOT* EDIT THIS FILE!
@@ -22,7 +22,7 @@ class TPobhelpGui ( wx.Frame ):
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetFont( wx.Font( 10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Ubuntu" ) )
-		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
@@ -90,6 +90,9 @@ class TPobhelpGui ( wx.Frame ):
 		self.mnuFTPserver = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"FTP server", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuServers.Append( self.mnuFTPserver )
 
+		self.mnuVncServer = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"VNC Server", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuServers.Append( self.mnuVncServer )
+
 		self.m_menubar1.Append( self.mnuServers, u"Servers" )
 
 		self.mnuTools = wx.Menu()
@@ -117,6 +120,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.quit, id = self.manuItemQuit.GetId() )
 		self.Bind( wx.EVT_MENU, self.runVpnClient, id = self.mnuItemStartVpnClient.GetId() )
 		self.Bind( wx.EVT_MENU, self.runFTPDdialog, id = self.mnuFTPserver.GetId() )
+		self.Bind( wx.EVT_MENU, self.runVncServerDialog, id = self.mnuVncServer.GetId() )
 		self.Bind( wx.EVT_MENU, self.showBlackboard, id = self.mnuItemBlackboard.GetId() )
 		self.Bind( wx.EVT_MENU, self.onAbout, id = self.mnuItemAbout.GetId() )
 
@@ -124,7 +128,7 @@ class TPobhelpGui ( wx.Frame ):
 		pass
 
 
-	# Virtual event handlers, overide them in your derived class
+	# Virtual event handlers, override them in your derived class
 	def quit( self, event ):
 		event.Skip()
 
@@ -142,6 +146,9 @@ class TPobhelpGui ( wx.Frame ):
 		event.Skip()
 
 	def runFTPDdialog( self, event ):
+		event.Skip()
+
+	def runVncServerDialog( self, event ):
 		event.Skip()
 
 	def showBlackboard( self, event ):
@@ -231,7 +238,7 @@ class TdlgVpnClient ( wx.Dialog ):
 		pass
 
 
-	# Virtual event handlers, overide them in your derived class
+	# Virtual event handlers, override them in your derived class
 	def onText( self, event ):
 		event.Skip()
 
@@ -338,7 +345,101 @@ class TdlgFTPD ( wx.Dialog ):
 		pass
 
 
-	# Virtual event handlers, overide them in your derived class
+	# Virtual event handlers, override them in your derived class
+	def onText( self, event ):
+		event.Skip()
+
+	def stopServer( self, event ):
+		event.Skip()
+
+	def startServer( self, event ):
+		event.Skip()
+
+
+###########################################################################
+## Class TdlgVncServer
+###########################################################################
+
+class TdlgVncServer ( wx.Dialog ):
+
+	def __init__( self, parent ):
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Run a VNC Server", pos = wx.DefaultPosition, size = wx.Size( 691,462 ), style = wx.DEFAULT_DIALOG_STYLE )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer6 = wx.BoxSizer( wx.VERTICAL )
+
+		bSizerPasswordPort = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Password:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText8.Wrap( -1 )
+
+		bSizerPasswordPort.Add( self.m_staticText8, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, u"pobhelp123", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizerPasswordPort.Add( self.entryPassword, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblPort.Wrap( -1 )
+
+		bSizerPasswordPort.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, u"5900", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizerPasswordPort.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+
+		bSizer6.Add( bSizerPasswordPort, 1, wx.EXPAND, 5 )
+
+		bSizerPortAndRoot = wx.BoxSizer( wx.HORIZONTAL )
+
+
+		bSizer6.Add( bSizerPortAndRoot, 1, wx.EXPAND, 5 )
+
+		bSizerOutput = wx.BoxSizer( wx.VERTICAL )
+
+		self.txtOutput = wx.richtext.RichTextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY|wx.VSCROLL|wx.HSCROLL|wx.NO_BORDER|wx.WANTS_CHARS )
+		self.txtOutput.SetMinSize( wx.Size( -1,500 ) )
+
+		bSizerOutput.Add( self.txtOutput, 1, wx.EXPAND |wx.ALL, 5 )
+
+
+		bSizer6.Add( bSizerOutput, 1, wx.EXPAND, 5 )
+
+		bSizerStartStop = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.btStop = wx.Button( self, wx.ID_ANY, u"Stop", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStop.Enable( False )
+
+		bSizerStartStop.Add( self.btStop, 1, wx.ALL, 5 )
+
+		self.btStart = wx.Button( self, wx.ID_ANY, u"Start", wx.DefaultPosition, wx.DefaultSize, 0 )
+
+		self.btStart.SetDefault()
+		bSizerStartStop.Add( self.btStart, 1, wx.ALL, 5 )
+
+
+		bSizer6.Add( bSizerStartStop, 0, wx.EXPAND, 5 )
+
+
+		self.SetSizer( bSizer6 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.Bind( wx.EVT_INIT_DIALOG, self.init )
+		self.txtOutput.Bind( wx.EVT_TEXT, self.onText )
+		self.btStop.Bind( wx.EVT_BUTTON, self.stopServer )
+		self.btStart.Bind( wx.EVT_BUTTON, self.startServer )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, override them in your derived class
+	def init( self, event ):
+		event.Skip()
+
 	def onText( self, event ):
 		event.Skip()
 
@@ -390,7 +491,7 @@ class TfrmBlackboard ( wx.Frame ):
 		pass
 
 
-	# Virtual event handlers, overide them in your derived class
+	# Virtual event handlers, override them in your derived class
 	def onclose( self, event ):
 		event.Skip()
 

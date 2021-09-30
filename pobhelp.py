@@ -3,6 +3,7 @@
 import wx,wx.html,sys
 from gui import *
 from ftpd import *
+from vncd import *
 from guiUtils import *
 import subprocess,os, urllib3 ,threading, ctypes,socket,time
 
@@ -66,6 +67,7 @@ class frmblackboard(TfrmBlackboard):
 		self.Hide()
 
 
+		
 
 class dialogVpnClient(TdlgVpnClient):
 	host=None
@@ -76,6 +78,7 @@ class dialogVpnClient(TdlgVpnClient):
 	def onText(self,evt):
 		p=self.txtVpn.GetCaretPosition()
 		self.txtVpn.ScrollIntoView(p,wx.WXK_END)
+
 	
 	def stopProcess(self,evt):
 		if (os.name=="posix"):
@@ -144,6 +147,7 @@ class mainWin(TPobhelpGui):
 	clientVpn=None
 	ftpdDialog=None
 	blackboard=None
+	vncServer=None
 	p=None
 	
 	
@@ -364,6 +368,9 @@ class mainWin(TPobhelpGui):
 	
 	def	runFTPDdialog(self, event):
 		self.ftpdDialog.Show()
+	
+	def runVncServerDialog(self, event):
+		self.vncServer.Show()
 		
 			
 if __name__ == '__main__':
@@ -386,6 +393,7 @@ if __name__ == '__main__':
 	win = mainWin(None)
 	win.clientVpn=dialogVpnClient(win)
 	win.ftpdDialog=dlgFTPD(win)
+	win.vncServer=frmVncServer(win)
 	
 	win.ftpdDialog.entryUser.SetValue("admin")
 	win.ftpdDialog.entryPassword.SetValue("admin")
@@ -395,6 +403,8 @@ if __name__ == '__main__':
 	win.blackboard=frmblackboard(win)
 	win.blackboard.SetIcon(wx.Icon(getScriptDir()+"/lifesaver.ico"))
 	
+	if (os.name=="nt"):
+		win.mnuVncServer.Enable(False)
 	
 	
 	
