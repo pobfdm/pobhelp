@@ -387,6 +387,9 @@ class TdlgVncServer ( wx.Dialog ):
 		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, u"5900", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerPasswordPort.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
+		self.chkViewOnly = wx.CheckBox( self, wx.ID_ANY, u"View only", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizerPasswordPort.Add( self.chkViewOnly, 0, wx.ALL, 5 )
+
 
 		bSizer6.Add( bSizerPasswordPort, 1, wx.EXPAND, 5 )
 
