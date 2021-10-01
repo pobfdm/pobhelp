@@ -18,6 +18,7 @@ class frmVncServer(TdlgVncServer):
 	password=None
 	port=None
 	cmd=None
+	p=None
 	
 	def init(self,evt):
 		if (os.name=="nt"):

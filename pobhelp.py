@@ -256,8 +256,13 @@ class mainWin(TPobhelpGui):
 	
 	def quit(self, event):
 		print("Quitting...")
-		wx.CallAfter(sys.exit)
+		try:
+			if (self.vncServer.p!=None):
+				self.vncServer.p.kill()
+		except:
+			print("Vnc server is sill alive!")	
 		
+		wx.CallAfter(sys.exit)
 	
 	def chkListenClicked(self,event):
 		if (self.chkListen.GetValue()==True):
