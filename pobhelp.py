@@ -14,6 +14,14 @@ import subprocess,os, urllib3 ,threading, ctypes,socket,time
 VERSION="0.1"
 
 
+def is_in_path(name):
+    try:
+        devnull = open(os.devnull)
+        subprocess.Popen([name], stdout=devnull, stderr=devnull).communicate()
+    except :
+        return False
+    
+    return True
 
 
 def find_procs_by_name(name):
@@ -168,8 +176,50 @@ class mainWin(TPobhelpGui):
 		#aboutInfo.AddArtist("")
 		wx.adv.AboutBox(aboutInfo)
 		
+	def genRemminaFile(self,port):
+		fileRemmina = '''
+[remmina]
+keymap=
+colordepth=16
+listenport=''' +port +'''
+quality=9
+ssh_tunnel_password=
+postcommand=
+server=
+username=
+name=VNC Listen Mode
+ssh_tunnel_enabled=0
+enable-autostart=0
+password=
+precommand=
+disableclipboard=0
+group=Casa
+disablepasswordstoring=0
+protocol=VNCI
+disableencryption=0
+viewonly=0
+ssh_tunnel_server=
+ssh_tunnel_loopback=0
+ssh_tunnel_auth=0
+ignore-tls-errors=1
+ssh_tunnel_username=
+ssh_tunnel_passphrase=
+ssh_tunnel_privatekey=
+notes_text=
+showcursor=0
+disableserverinput=0
+window_maximize=0
+window_width=1148
+window_height=510
+viewmode=1
+scale=1
+
+		'''	
+		textfile = open(getHomePath()+"/.config/pobhelp/inverse.remmina", "w")
+		textfile.write(fileRemmina)
+		textfile.close()
 		
-	
+		
 	def getPublicIpRaw(self):
 		url = "http://api.ipify.org/?format=raw"
 		http = urllib3.PoolManager()
@@ -299,9 +349,16 @@ class mainWin(TPobhelpGui):
 			#Listen Mode
 			self.statusBar.SetStatusText("Listen to port %s" % self.entryPort.GetValue())
 			if (os.name=="posix"):
-				cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
-				thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-				thCmd.daemon = True
+				if ( not is_in_path("remmina")):
+					cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
+					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
+					thCmd.daemon = True
+				else:
+					self.genRemminaFile(self.entryPort.GetValue())
+					cmd=(["remmina","-c", getHomePath()+"/.config/pobhelp/inverse.remmina"])
+					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
+					thCmd.daemon = True	
+				
 				thCmd.start()
 			
 			elif (os.name=="nt"):
@@ -425,7 +482,6 @@ if __name__ == '__main__':
 	
 	win.statusBar.SetStatusText("Ready.")
 	win.SetIcon(wx.Icon(getScriptDir()+"/lifesaver.ico"))
-	
 	
 	win.btDisconnect.Disable()
 	win.Show(True)
