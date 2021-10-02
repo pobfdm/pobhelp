@@ -99,6 +99,9 @@ class TPobhelpGui ( wx.Frame ):
 		self.mnuItemBlackboard = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Blackboard", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuTools.Append( self.mnuItemBlackboard )
 
+		self.mnuRemminaVNCI = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Run Remmina inverse vnc", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuTools.Append( self.mnuRemminaVNCI )
+
 		self.m_menubar1.Append( self.mnuTools, u"Tools" )
 
 		self.mnuHelp = wx.Menu()
@@ -122,6 +125,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.runFTPDdialog, id = self.mnuFTPserver.GetId() )
 		self.Bind( wx.EVT_MENU, self.runVncServerDialog, id = self.mnuVncServer.GetId() )
 		self.Bind( wx.EVT_MENU, self.showBlackboard, id = self.mnuItemBlackboard.GetId() )
+		self.Bind( wx.EVT_MENU, self.runRemminaVNCI, id = self.mnuRemminaVNCI.GetId() )
 		self.Bind( wx.EVT_MENU, self.onAbout, id = self.mnuItemAbout.GetId() )
 
 	def __del__( self ):
@@ -152,6 +156,9 @@ class TPobhelpGui ( wx.Frame ):
 		event.Skip()
 
 	def showBlackboard( self, event ):
+		event.Skip()
+
+	def runRemminaVNCI( self, event ):
 		event.Skip()
 
 	def onAbout( self, event ):

@@ -1,0 +1,10 @@
+Package: Pobhelp
+Version: 0.1
+Maintainer: Fabio Di Matteo <fadimatteo@gmail.com>
+Section: python
+Source: https://github.com/pobfdm/pobhelp
+Homepage: https://github.com/pobfdm/pobhelp
+Architecture: all
+Priority: optional
+Depends: python3-wxgtk4.0 (>=4), python3-urllib3 (>=1), python3-pyftpdlib (>=1), x11vnc (>=0.9), tigervnc-viewer (>=1.9), openvpn (>=2.4), policykit-1 (>=0)
+Description: Pobhelp is a simple gui that allows you to establish a reverse vnc connection between two PCs. And more...

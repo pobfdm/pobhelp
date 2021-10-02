@@ -328,6 +328,20 @@ scale=1
 			self.entryHost.Enable()
 			self.entryPort.SetValue("")
 	
+	
+	def runRemminaVNCI(self,evt):
+		if not (self.entryPort.GetValue()):
+			Warn(self,"Fill port please!", 'Warning')
+			return
+		
+		self.genRemminaFile(self.entryPort.GetValue())
+		cmd=(["remmina", "-c",getHomePath()+"/.config/pobhelp/inverse.remmina"])
+		try:
+			subprocess.Popen(cmd)
+		except:	
+			Warn(self,"Remmina is not installed!", 'Warning')
+	
+	
 	def connect(self,event):
 		if not (self.entryHost.GetValue() and self.entryPort.GetValue()):
 			Warn(self,"Fill host and port please!", 'Warning')
@@ -349,17 +363,16 @@ scale=1
 			#Listen Mode
 			self.statusBar.SetStatusText("Listen to port %s" % self.entryPort.GetValue())
 			if (os.name=="posix"):
-				if ( not is_in_path("remmina")):
+				self.genRemminaFile(self.entryPort.GetValue())
+				cmd=(["remmina", "-c",getHomePath()+"/.config/pobhelp/inverse.remmina"])
+				try:
+					self.p=subprocess.Popen(cmd)
+					
+				except:	
 					cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
 					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
 					thCmd.daemon = True
-				else:
-					self.genRemminaFile(self.entryPort.GetValue())
-					cmd=(["remmina","-c", getHomePath()+"/.config/pobhelp/inverse.remmina"])
-					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-					thCmd.daemon = True	
-				
-				thCmd.start()
+					thCmd.start()
 			
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnviewer.exe", "-listen", "-port",self.entryPort.GetValue()])

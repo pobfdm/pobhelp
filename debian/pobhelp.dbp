@@ -1,0 +1,62 @@
+[DEBREATE-0.7.13]
+<<CTRL>>
+Package: Pobhelp
+Version: 0.1
+Maintainer: Fabio Di Matteo <fadimatteo@gmail.com>
+Section: python
+Source: https://github.com/pobfdm/pobhelp
+Homepage: https://github.com/pobfdm/pobhelp
+Architecture: all
+Priority: optional
+Depends: python3-wxgtk4.0 (>=4), python3-urllib3 (>=1), python3-pyftpdlib (>=1), x11vnc (>=0.9), tigervnc-viewer (>=1.9), openvpn (>=2.4), policykit-1 (>=0)
+Description: Pobhelp is a simple gui that allows you to establish a reverse vnc connection between two PCs. And more...
+
+<</CTRL>>
+<<FILES>>
+1
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/LICENSE -> LICENSE -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/client.ovpn -> client.ovpn -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/ftpd.py -> ftpd.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.fbp -> gui.fbp -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.py -> gui.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/guiUtils.py -> guiUtils.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.ico -> lifesaver.ico -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.png -> lifesaver.png -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.svg -> lifesaver.svg -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.py -> pobhelp.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/server.ovpn -> server.ovpn -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/static.key -> static.key -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/vncd.py -> vncd.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp -> pobhelp -> /usr/bin
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.desktop -> pobhelp.desktop -> /usr/share/applications/
+<</FILES>>
+<<SCRIPTS>>
+<<PREINST>>
+0
+<</PREINST>>
+<<POSTINST>>
+0
+<</POSTINST>>
+<<PRERM>>
+0
+<</PRERM>>
+<<POSTRM>>
+0
+<</POSTRM>>
+<</SCRIPTS>>
+<<CHANGELOG>>
+<<DEST>>DEFAULT<</DEST>>
+
+<</CHANGELOG>>
+<<COPYRIGHT>>
+
+<</COPYRIGHT>>
+<<MENU>>
+0
+<</MENU>>
+<<BUILD>>
+1
+1
+1
+strip
+<</BUILD>>
