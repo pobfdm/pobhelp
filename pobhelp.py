@@ -366,7 +366,9 @@ scale=1
 				self.genRemminaFile(self.entryPort.GetValue())
 				cmd=(["remmina", "-c",getHomePath()+"/.config/pobhelp/inverse.remmina"])
 				try:
-					self.p=subprocess.Popen(cmd)
+					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
+					thCmd.daemon = True
+					thCmd.start()
 					
 				except:	
 					cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
