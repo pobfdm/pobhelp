@@ -239,7 +239,11 @@ scale=1
 		
 		if (self.chkListen.GetValue()==True):
 			#Listen Mode
-			self.p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
+			try:
+				self.p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
+			except:
+				cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
+				self.p=subprocess.Popen(cmd,bufsize=50 ,stderr=subprocess.PIPE)
 			
 			while self.p.poll() is None :
 				line = self.p.stderr.readline()
@@ -365,16 +369,10 @@ scale=1
 			if (os.name=="posix"):
 				self.genRemminaFile(self.entryPort.GetValue())
 				cmd=(["remmina", "-c",getHomePath()+"/.config/pobhelp/inverse.remmina"])
-				try:
-					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-					thCmd.daemon = True
-					thCmd.start()
+				thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
+				thCmd.daemon = True
+				thCmd.start()
 					
-				except:	
-					cmd=(["vncviewer","-AlertOnFatalError","-Shared","-listen",self.entryPort.GetValue()])
-					thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-					thCmd.daemon = True
-					thCmd.start()
 			
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnviewer.exe", "-listen", "-port",self.entryPort.GetValue()])
