@@ -11,6 +11,9 @@ import wx
 import wx.xrc
 import wx.richtext
 
+import gettext
+_ = gettext.gettext
+
 ###########################################################################
 ## Class TPobhelpGui
 ###########################################################################
@@ -18,7 +21,7 @@ import wx.richtext
 class TPobhelpGui ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"PobHelp", pos = wx.DefaultPosition, size = wx.Size( 318,540 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"PobHelp"), pos = wx.DefaultPosition, size = wx.Size( 318,540 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetFont( wx.Font( 10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Ubuntu" ) )
@@ -32,18 +35,18 @@ class TPobhelpGui ( wx.Frame ):
 		bSizer2 = wx.BoxSizer( wx.HORIZONTAL )
 
 		bSizer2.SetMinSize( wx.Size( -1,60 ) )
-		self.chkListen = wx.CheckBox( self, wx.ID_ANY, u"Give help", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.chkListen = wx.CheckBox( self, wx.ID_ANY, _(u"Give help"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer2.Add( self.chkListen, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
-		self.chkVpnMode = wx.CheckBox( self, wx.ID_ANY, u"VPN", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.chkVpnMode.SetToolTip( u"VPN upd" )
+		self.chkVpnMode = wx.CheckBox( self, wx.ID_ANY, _(u"VPN"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.chkVpnMode.SetToolTip( _(u"VPN upd") )
 
 		bSizer2.Add( self.chkVpnMode, 0, wx.ALL|wx.EXPAND, 5 )
 
 
 		bSizer1.Add( bSizer2, 0, wx.EXPAND, 5 )
 
-		self.lblHost = wx.StaticText( self, wx.ID_ANY, u"Hostname", wx.Point( -1,-1 ), wx.DefaultSize, 0 )
+		self.lblHost = wx.StaticText( self, wx.ID_ANY, _(u"Hostname"), wx.Point( -1,-1 ), wx.DefaultSize, 0 )
 		self.lblHost.Wrap( -1 )
 
 		bSizer1.Add( self.lblHost, 0, wx.ALL, 5 )
@@ -51,7 +54,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.entryHost = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
 		bSizer1.Add( self.entryHost, 0, wx.ALL|wx.EXPAND, 5 )
 
-		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblPort = wx.StaticText( self, wx.ID_ANY, _(u"Port"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblPort.Wrap( -1 )
 
 		bSizer1.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
@@ -59,12 +62,12 @@ class TPobhelpGui ( wx.Frame ):
 		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer1.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
-		self.btConnect = wx.Button( self, wx.ID_ANY, u"<b>Connect</b>", wx.DefaultPosition, wx.Size( 200,60 ), 0 )
-		self.btConnect.SetLabelMarkup( u"<b>Connect</b>" )
+		self.btConnect = wx.Button( self, wx.ID_ANY, _(u"<b>Connect</b>"), wx.DefaultPosition, wx.Size( 200,60 ), 0 )
+		self.btConnect.SetLabelMarkup( _(u"<b>Connect</b>") )
 		bSizer1.Add( self.btConnect, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
-		self.btDisconnect = wx.Button( self, wx.ID_ANY, u"<b>Disconnect</b>", wx.DefaultPosition, wx.Size( 200,60 ), 0 )
-		self.btDisconnect.SetLabelMarkup( u"<b>Disconnect</b>" )
+		self.btDisconnect = wx.Button( self, wx.ID_ANY, _(u"<b>Disconnect</b>"), wx.DefaultPosition, wx.Size( 200,60 ), 0 )
+		self.btDisconnect.SetLabelMarkup( _(u"<b>Disconnect</b>") )
 		bSizer1.Add( self.btDisconnect, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
@@ -75,40 +78,40 @@ class TPobhelpGui ( wx.Frame ):
 
 		self.m_menubar1 = wx.MenuBar( 0 )
 		self.mnuFile = wx.Menu()
-		self.manuItemQuit = wx.MenuItem( self.mnuFile, wx.ID_ANY, u"Quit", wx.EmptyString, wx.ITEM_NORMAL )
+		self.manuItemQuit = wx.MenuItem( self.mnuFile, wx.ID_ANY, _(u"Quit"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuFile.Append( self.manuItemQuit )
 
-		self.m_menubar1.Append( self.mnuFile, u"File" )
+		self.m_menubar1.Append( self.mnuFile, _(u"File") )
 
 		self.mnuVpn = wx.Menu()
-		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Vpn client/server", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, _(u"Vpn client/server"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuVpn.Append( self.mnuItemStartVpnClient )
 
-		self.m_menubar1.Append( self.mnuVpn, u"Vpn" )
+		self.m_menubar1.Append( self.mnuVpn, _(u"Vpn") )
 
 		self.mnuServers = wx.Menu()
-		self.mnuFTPserver = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"FTP server", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuFTPserver = wx.MenuItem( self.mnuServers, wx.ID_ANY, _(u"FTP server"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuServers.Append( self.mnuFTPserver )
 
-		self.mnuVncServer = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"VNC Server", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuVncServer = wx.MenuItem( self.mnuServers, wx.ID_ANY, _(u"VNC Server"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuServers.Append( self.mnuVncServer )
 
-		self.m_menubar1.Append( self.mnuServers, u"Servers" )
+		self.m_menubar1.Append( self.mnuServers, _(u"Servers") )
 
 		self.mnuTools = wx.Menu()
-		self.mnuItemBlackboard = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Blackboard", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuItemBlackboard = wx.MenuItem( self.mnuTools, wx.ID_ANY, _(u"Blackboard"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuTools.Append( self.mnuItemBlackboard )
 
-		self.mnuRemminaVNCI = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Run Remmina inverse vnc", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuRemminaVNCI = wx.MenuItem( self.mnuTools, wx.ID_ANY, _(u"Run Remmina inverse vnc"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuTools.Append( self.mnuRemminaVNCI )
 
-		self.m_menubar1.Append( self.mnuTools, u"Tools" )
+		self.m_menubar1.Append( self.mnuTools, _(u"Tools") )
 
 		self.mnuHelp = wx.Menu()
-		self.mnuItemAbout = wx.MenuItem( self.mnuHelp, wx.ID_ANY, u"About", wx.EmptyString, wx.ITEM_NORMAL )
+		self.mnuItemAbout = wx.MenuItem( self.mnuHelp, wx.ID_ANY, _(u"About"), wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuHelp.Append( self.mnuItemAbout )
 
-		self.m_menubar1.Append( self.mnuHelp, u"Help" )
+		self.m_menubar1.Append( self.mnuHelp, _(u"Help") )
 
 		self.SetMenuBar( self.m_menubar1 )
 
@@ -172,7 +175,7 @@ class TPobhelpGui ( wx.Frame ):
 class TdlgVpnClient ( wx.Dialog ):
 
 	def __init__( self, parent ):
-		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Vpn manager", pos = wx.DefaultPosition, size = wx.Size( 703,367 ), style = wx.DEFAULT_DIALOG_STYLE )
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Vpn manager"), pos = wx.DefaultPosition, size = wx.Size( 703,367 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -180,7 +183,7 @@ class TdlgVpnClient ( wx.Dialog ):
 
 		bSizer4 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"Host", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, _(u"Host"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText3.Wrap( -1 )
 
 		bSizer4.Add( self.m_staticText3, 0, wx.ALL, 5 )
@@ -188,7 +191,7 @@ class TdlgVpnClient ( wx.Dialog ):
 		self.entryHostVpn = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer4.Add( self.entryHostVpn, 1, wx.ALL, 5 )
 
-		self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, u"Port", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, _(u"Port"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText4.Wrap( -1 )
 
 		bSizer4.Add( self.m_staticText4, 0, wx.ALL, 5 )
@@ -202,13 +205,13 @@ class TdlgVpnClient ( wx.Dialog ):
 		self.txtVpn = wx.richtext.RichTextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY|wx.VSCROLL|wx.HSCROLL|wx.NO_BORDER|wx.WANTS_CHARS )
 		bSizer3.Add( self.txtVpn, 1, wx.EXPAND |wx.ALL, 5 )
 
-		self.chkServerMode = wx.CheckBox( self, wx.ID_ANY, u"Server mode", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.chkServerMode = wx.CheckBox( self, wx.ID_ANY, _(u"Server mode"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer3.Add( self.chkServerMode, 0, wx.ALL, 5 )
 
 		bSizerInfo = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn).", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTER_HORIZONTAL )
-		self.m_staticText10.SetLabelMarkup( u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn)." )
+		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, _(u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn)."), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTER_HORIZONTAL )
+		self.m_staticText10.SetLabelMarkup( _(u"To make the vpn safe, regenerate the \"static.key\" security key (openvpn).") )
 		self.m_staticText10.Wrap( -1 )
 
 		bSizerInfo.Add( self.m_staticText10, 1, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
@@ -218,10 +221,10 @@ class TdlgVpnClient ( wx.Dialog ):
 
 		bSizer5 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.btCancel = wx.Button( self, wx.ID_ANY, u"Cancel", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btCancel = wx.Button( self, wx.ID_ANY, _(u"Cancel"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer5.Add( self.btCancel, 1, wx.ALL, 5 )
 
-		self.btConnect = wx.Button( self, wx.ID_ANY, u"Connect", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btConnect = wx.Button( self, wx.ID_ANY, _(u"Connect"), wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		self.btConnect.SetDefault()
 		bSizer5.Add( self.btConnect, 1, wx.ALL, 5 )
@@ -272,7 +275,7 @@ class TdlgFTPD ( wx.Dialog ):
 
 		bSizerUserPassword = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"User:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, _(u"User:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText7.Wrap( -1 )
 
 		bSizerUserPassword.Add( self.m_staticText7, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
@@ -280,7 +283,7 @@ class TdlgFTPD ( wx.Dialog ):
 		self.entryUser = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerUserPassword.Add( self.entryUser, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Password:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, _(u"Password:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText8.Wrap( -1 )
 
 		bSizerUserPassword.Add( self.m_staticText8, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
@@ -293,7 +296,7 @@ class TdlgFTPD ( wx.Dialog ):
 
 		bSizerPortAndRoot = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblPort = wx.StaticText( self, wx.ID_ANY, _(u"Port:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblPort.Wrap( -1 )
 
 		bSizerPortAndRoot.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
@@ -301,12 +304,12 @@ class TdlgFTPD ( wx.Dialog ):
 		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerPortAndRoot.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Root folder:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, _(u"Root folder:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText6.Wrap( -1 )
 
 		bSizerPortAndRoot.Add( self.m_staticText6, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.dirPkrFTPRoot = wx.DirPickerCtrl( self, wx.ID_ANY, wx.EmptyString, u"Select a folder", wx.DefaultPosition, wx.DefaultSize, wx.DIRP_CHANGE_DIR|wx.DIRP_DEFAULT_STYLE|wx.DIRP_DIR_MUST_EXIST|wx.DIRP_SMALL|wx.DIRP_USE_TEXTCTRL )
+		self.dirPkrFTPRoot = wx.DirPickerCtrl( self, wx.ID_ANY, wx.EmptyString, _(u"Select a folder"), wx.DefaultPosition, wx.DefaultSize, wx.DIRP_CHANGE_DIR|wx.DIRP_DEFAULT_STYLE|wx.DIRP_DIR_MUST_EXIST|wx.DIRP_SMALL|wx.DIRP_USE_TEXTCTRL )
 		bSizerPortAndRoot.Add( self.dirPkrFTPRoot, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
 
@@ -324,12 +327,12 @@ class TdlgFTPD ( wx.Dialog ):
 
 		bSizerStartStop = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.btStop = wx.Button( self, wx.ID_ANY, u"Stop", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStop = wx.Button( self, wx.ID_ANY, _(u"Stop"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.btStop.Enable( False )
 
 		bSizerStartStop.Add( self.btStop, 1, wx.ALL, 5 )
 
-		self.btStart = wx.Button( self, wx.ID_ANY, u"Start", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStart = wx.Button( self, wx.ID_ANY, _(u"Start"), wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		self.btStart.SetDefault()
 		bSizerStartStop.Add( self.btStart, 1, wx.ALL, 5 )
@@ -370,7 +373,7 @@ class TdlgFTPD ( wx.Dialog ):
 class TdlgVncServer ( wx.Dialog ):
 
 	def __init__( self, parent ):
-		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"Run a VNC Server", pos = wx.DefaultPosition, size = wx.Size( 691,462 ), style = wx.DEFAULT_DIALOG_STYLE )
+		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Run a VNC Server"), pos = wx.DefaultPosition, size = wx.Size( 691,462 ), style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -378,23 +381,23 @@ class TdlgVncServer ( wx.Dialog ):
 
 		bSizerPasswordPort = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Password:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, _(u"Password:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText8.Wrap( -1 )
 
 		bSizerPasswordPort.Add( self.m_staticText8, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, u"pobhelp123", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, _(u"pobhelp123"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerPasswordPort.Add( self.entryPassword, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblPort = wx.StaticText( self, wx.ID_ANY, _(u"Port:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblPort.Wrap( -1 )
 
 		bSizerPasswordPort.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, u"5900", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, _(u"5900"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerPasswordPort.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.chkViewOnly = wx.CheckBox( self, wx.ID_ANY, u"View only", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.chkViewOnly = wx.CheckBox( self, wx.ID_ANY, _(u"View only"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerPasswordPort.Add( self.chkViewOnly, 0, wx.ALL, 5 )
 
 
@@ -417,12 +420,12 @@ class TdlgVncServer ( wx.Dialog ):
 
 		bSizerStartStop = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.btStop = wx.Button( self, wx.ID_ANY, u"Stop", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStop = wx.Button( self, wx.ID_ANY, _(u"Stop"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.btStop.Enable( False )
 
 		bSizerStartStop.Add( self.btStop, 1, wx.ALL, 5 )
 
-		self.btStart = wx.Button( self, wx.ID_ANY, u"Start", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btStart = wx.Button( self, wx.ID_ANY, _(u"Start"), wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		self.btStart.SetDefault()
 		bSizerStartStop.Add( self.btStart, 1, wx.ALL, 5 )
@@ -467,14 +470,14 @@ class TdlgVncServer ( wx.Dialog ):
 class TfrmBlackboard ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Blackboard", pos = wx.DefaultPosition, size = wx.Size( 682,507 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"Blackboard"), pos = wx.DefaultPosition, size = wx.Size( 682,507 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_MENU ) )
 
 		bSizerTxtBlackboard = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, u"Write here:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText10 = wx.StaticText( self, wx.ID_ANY, _(u"Write here:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText10.Wrap( -1 )
 
 		bSizerTxtBlackboard.Add( self.m_staticText10, 0, wx.ALL, 5 )
@@ -484,7 +487,7 @@ class TfrmBlackboard ( wx.Frame ):
 
 		bSizerTxtBlackboard.Add( self.txtBlackboard, 1, wx.EXPAND |wx.ALL, 5 )
 
-		self.btClose = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btClose = wx.Button( self, wx.ID_ANY, _(u"Close"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerTxtBlackboard.Add( self.btClose, 0, wx.ALL|wx.ALIGN_RIGHT, 5 )
 
 

@@ -7,6 +7,7 @@ arch=('any')
 url="https://github.com/pobfdm/pobhelp.git"
 license=('GPL')
 depends=('python-wxpython' 'python-urllib3' 'x11vnc' 'tigervnc' 'openvpn' 'python-pyftpdlib')
+optdepends=('remmina: a better viewer')
 conflicts=('pobhelp')
 source=(https://github.com/pobfdm/pobhelp/archive/main.zip)
 md5sums=('SKIP') #generate with 'makepkg -g'

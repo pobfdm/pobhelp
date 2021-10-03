@@ -13,15 +13,18 @@ import subprocess,os, urllib3 ,threading, ctypes,socket,time
 
 VERSION="0.1"
 
+import locale, gettext
 
-def is_in_path(name):
-    try:
-        devnull = open(os.devnull)
-        subprocess.Popen([name], stdout=devnull, stderr=devnull).communicate()
-    except :
-        return False
-    
-    return True
+try:
+	current_locale, encoding = locale.getdefaultlocale()
+	locale_path = getScriptDir()+os.sep+'locale'+os.sep
+	language = gettext.translation ('pobhelp', locale_path, [current_locale] )
+	_ = gettext.gettext
+	language.install()
+
+except:
+	_ = gettext.gettext
+
 
 
 def find_procs_by_name(name):
@@ -170,7 +173,7 @@ class mainWin(TPobhelpGui):
 		icon=os.path.join(getScriptDir(),'lifesaver.png')
 		aboutInfo.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_PNG))
 		aboutInfo.SetDescription(_("A simple gui for helpdesking"))
-		aboutInfo.SetCopyright("Released under GNU/GPL v2 License \n\n Author: Fabio Di Matteo - fadimatteo@gmail.com")
+		aboutInfo.SetCopyright(_("Released under GNU/GPL v2 License \n\n Author: Fabio Di Matteo - fadimatteo@gmail.com"))
 		aboutInfo.SetWebSite("https://github.com/pobfdm/pobhelp")
 		aboutInfo.AddDeveloper("Fabio Di Matteo - fadimatteo@gmail.com")
 		#aboutInfo.AddArtist("")
@@ -464,7 +467,12 @@ if __name__ == '__main__':
 		_ = gettext.gettext				
 	
 	
+	
+	
+	
+	
 	app = wx.App()
+	
 	win = mainWin(None)
 	win.clientVpn=dialogVpnClient(win)
 	win.ftpdDialog=dlgFTPD(win)
