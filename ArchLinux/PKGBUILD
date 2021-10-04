@@ -20,5 +20,6 @@ package() {
   mkdir -p "$pkgdir/usr/share/applications"
   cp "$srcdir/pobhelp-main/pobhelp" "$pkgdir/usr/bin/"
   cp -R "$srcdir/pobhelp-main/"* "$pkgdir/usr/lib/pobhelp/"
+  cp -R "$srcdir/pobhelp-main/locale" "$pkgdir/usr/lib/pobhelp/"
   cp "$srcdir/pobhelp-main/"*.desktop "$pkgdir/usr/share/applications/"
 }
