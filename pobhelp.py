@@ -14,17 +14,8 @@ import subprocess,os, urllib3 ,threading, ctypes,socket,time
 VERSION="0.1"
 
 import locale, gettext
-
-try:
-	current_locale, encoding = locale.getdefaultlocale()
-	locale_path = getScriptDir()+os.sep+'locale'+os.sep
-	language = gettext.translation ('pobhelp', locale_path, [current_locale] )
-	_ = gettext.gettext
-	language.install()
-
-except:
-	_ = gettext.gettext
-
+t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
+_ = t.gettext
 
 
 def find_procs_by_name(name):
@@ -161,6 +152,10 @@ class mainWin(TPobhelpGui):
 	vncServer=None
 	p=None
 	
+	
+	def __init__( self, parent ):
+		TPobhelpGui.__init__( self, parent )
+		self.chkListen.SetLabel(_("Give help"))
 	
 	def showBlackboard(self,evt):
 		self.blackboard.Show()
@@ -417,10 +412,6 @@ scale=1
 			
 			
 			if (os.name=="posix"):
-				#cmd=(["killall","vncviewer"])
-				#thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
-				#thCmd.daemon = True
-				#thCmd.start()
 				self.p.kill()
 			
 			elif (os.name=="nt"):
@@ -431,10 +422,12 @@ scale=1
 		else:
 			#Connect Mode
 			if (os.name=="posix"):
+				self.p.kill()
 				cmd=(["x11vnc","-remote","stop"])
 				thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
+				self.p.kill()
 			
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnserver.exe","-controlservice", "-disconnectall" ])
@@ -450,29 +443,18 @@ scale=1
 	def runVncServerDialog(self, event):
 		self.vncServer.Show()
 		
+	
+
 			
 if __name__ == '__main__':
 	
 	#Change to script dir
 	os.chdir(os.path.dirname(os.path.realpath(__file__)))
 	
-	import locale, gettext
-	try:
-		current_locale, encoding = locale.getdefaultlocale()
-		locale_path = 'locale'
-		language = gettext.translation ('pobhelp', locale_path, [current_locale] )
-		language.install()
-		
-	except:
-		_ = gettext.gettext				
-	
-	
-	
 	
 	
 	
 	app = wx.App()
-	
 	win = mainWin(None)
 	win.clientVpn=dialogVpnClient(win)
 	win.ftpdDialog=dlgFTPD(win)
