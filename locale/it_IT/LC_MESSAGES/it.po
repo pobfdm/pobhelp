@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pobhelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-03 11:19+0200\n"
+"PO-Revision-Date: 2021-10-04 12:24+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui.py:397
+msgid "5900"
+msgstr ""
+
+#: gui.py:65 gui.py:66
+msgid "<b>Connect</b>"
+msgstr "<b>Connetti</b>"
+
+#: gui.py:69 gui.py:70
+msgid "<b>Disconnect</b>"
+msgstr "<b>Disconnetti</b>"
+
+#: pobhelp.py:172
+msgid "A simple gui for helpdesking"
+msgstr "Una semplice interfaccia grafica per aiutare chi è in difficoltà"
+
+#: gui.py:111
+msgid "About"
+msgstr "Informazioni su Pobhelp"
+
+#: gui.py:102 gui.py:473
+msgid "Blackboard"
+msgstr "Lavagna"
+
+#: gui.py:224
+msgid "Cancel"
+msgstr "Annulla"
+
+#: gui.py:490
+msgid "Close"
+msgstr ""
+
+#: gui.py:227
+#, fuzzy
+#| msgid "<b>Connect</b>"
+msgid "Connect"
+msgstr "<b>Connetti</b>"
+
+#: gui.py:93
+msgid "FTP server"
+msgstr ""
+
+#: gui.py:84
+msgid "File"
+msgstr ""
+
+#: gui.py:38
+msgid "Give help"
+msgstr "Aiuta qualcuno"
+
+#: gui.py:114
+msgid "Help"
+msgstr "Aiuto"
+
+#: gui.py:186
+msgid "Host"
+msgstr ""
+
+#: gui.py:49
+msgid "Hostname"
+msgstr ""
+
+#: gui.py:286 gui.py:384
+msgid "Password:"
+msgstr ""
+
+#: gui.py:24
+msgid "PobHelp"
+msgstr ""
+
+#: gui.py:57 gui.py:194
+msgid "Port"
+msgstr ""
+
+#: gui.py:299 gui.py:392
+msgid "Port:"
+msgstr ""
+
+#: gui.py:81
+msgid "Quit"
+msgstr "Esci"
+
+#: pobhelp.py:173
+msgid ""
+"Released under GNU/GPL v2 License \n"
+"\n"
+" Author: Fabio Di Matteo - fadimatteo@gmail.com"
+msgstr ""
+
+#: gui.py:307
+msgid "Root folder:"
+msgstr ""
+
+#: gui.py:105
+msgid "Run Remmina inverse vnc"
+msgstr ""
+
+#: gui.py:376
+msgid "Run a VNC Server"
+msgstr ""
+
+#: gui.py:312
+msgid "Select a folder"
+msgstr ""
+
+#: gui.py:208
+msgid "Server mode"
+msgstr ""
+
+#: gui.py:99
+msgid "Servers"
+msgstr ""
+
+#: gui.py:335 gui.py:428
+msgid "Start"
+msgstr ""
+
+#: gui.py:330 gui.py:423
+msgid "Stop"
+msgstr ""
+
+#: gui.py:213 gui.py:214
+msgid "To make the vpn safe, regenerate the \"static.key\" security key (openvpn)."
+msgstr ""
+
+#: gui.py:108
+msgid "Tools"
+msgstr ""
+
+#: gui.py:278
+msgid "User:"
+msgstr ""
+
+#: gui.py:96
+msgid "VNC Server"
+msgstr ""
+
+#: gui.py:41
+msgid "VPN"
+msgstr ""
+
+#: gui.py:42
+msgid "VPN upd"
+msgstr ""
+
+#: gui.py:400
+msgid "View only"
+msgstr ""
+
+#: gui.py:90
+msgid "Vpn"
+msgstr ""
+
+#: gui.py:87
+msgid "Vpn client/server"
+msgstr ""
+
+#: gui.py:178
+msgid "Vpn manager"
+msgstr ""
+
+#: gui.py:480
+msgid "Write here:"
+msgstr ""
+
+#: gui.py:389
+msgid "pobhelp123"
+msgstr ""
