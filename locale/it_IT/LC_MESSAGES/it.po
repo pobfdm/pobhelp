@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pobhelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-03 11:19+0200\n"
-"PO-Revision-Date: 2021-10-04 12:24+0200\n"
+"PO-Revision-Date: 2021-10-04 16:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it\n"
@@ -51,10 +51,8 @@ msgid "Close"
 msgstr ""
 
 #: gui.py:227
-#, fuzzy
-#| msgid "<b>Connect</b>"
 msgid "Connect"
-msgstr "<b>Connetti</b>"
+msgstr "Connetti"
 
 #: gui.py:93
 msgid "FTP server"
@@ -78,7 +76,7 @@ msgstr ""
 
 #: gui.py:49
 msgid "Hostname"
-msgstr ""
+msgstr "Indirizzo"
 
 #: gui.py:286 gui.py:384
 msgid "Password:"
@@ -90,7 +88,7 @@ msgstr ""
 
 #: gui.py:57 gui.py:194
 msgid "Port"
-msgstr ""
+msgstr "Porta"
 
 #: gui.py:299 gui.py:392
 msgid "Port:"

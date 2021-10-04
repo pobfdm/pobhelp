@@ -156,6 +156,10 @@ class mainWin(TPobhelpGui):
 	def __init__( self, parent ):
 		TPobhelpGui.__init__( self, parent )
 		self.chkListen.SetLabel(_("Give help"))
+		self.lblHost.SetLabel(_("Hostname"))
+		self.lblPort.SetLabel(_("Port"))
+		self.btConnect.SetLabelMarkup(_("<b>Connect</b>"))
+		self.btDisconnect.SetLabelMarkup(_("<b>Disconnect</b>"))
 	
 	def showBlackboard(self,evt):
 		self.blackboard.Show()
