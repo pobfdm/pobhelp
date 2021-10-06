@@ -70,7 +70,24 @@ class dlgFTPD(TdlgFTPD):
 	server=None
 	handler=None
 	
-	
+	def __init__( self, parent ):
+		
+		import locale, gettext
+		from pobhelp import getScriptDir
+		
+		try:
+			t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
+			_ = t.gettext
+		except:
+			_ = t.gettext
+		TdlgFTPD.__init__( self, parent )
+		self.lblUser.SetLabel(_("User:"))
+		self.lblPort.SetLabel(_("Port:"))
+		self.lblRootFolder.SetLabel(_("Root folder:"))
+		self.btStop.SetLabel(_("Stop"))
+		self.btStart.SetLabel(_("Start"))
+		
+		
 	def onText(self,evt):
 		p=self.txtOutput.GetCaretPosition()
 		self.txtOutput.ScrollIntoView(p,wx.WXK_END)

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pobhelp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-03 11:19+0200\n"
-"PO-Revision-Date: 2021-10-04 16:40+0200\n"
+"PO-Revision-Date: 2021-10-05 10:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "Annulla"
 
 #: gui.py:490
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: gui.py:227
 msgid "Connect"
@@ -72,7 +72,7 @@ msgstr "Aiuto"
 
 #: gui.py:186
 msgid "Host"
-msgstr ""
+msgstr "Indirizzo"
 
 #: gui.py:49
 msgid "Hostname"
@@ -92,7 +92,7 @@ msgstr "Porta"
 
 #: gui.py:299 gui.py:392
 msgid "Port:"
-msgstr ""
+msgstr "Porta:"
 
 #: gui.py:81
 msgid "Quit"
@@ -107,11 +107,11 @@ msgstr ""
 
 #: gui.py:307
 msgid "Root folder:"
-msgstr ""
+msgstr "Cartella radice:"
 
 #: gui.py:105
 msgid "Run Remmina inverse vnc"
-msgstr ""
+msgstr "Avvia Remmina in connessione vnc inversa"
 
 #: gui.py:376
 msgid "Run a VNC Server"
@@ -119,11 +119,11 @@ msgstr ""
 
 #: gui.py:312
 msgid "Select a folder"
-msgstr ""
+msgstr "Seleziona cartella"
 
 #: gui.py:208
 msgid "Server mode"
-msgstr ""
+msgstr "Modo Server"
 
 #: gui.py:99
 msgid "Servers"
@@ -131,23 +131,23 @@ msgstr ""
 
 #: gui.py:335 gui.py:428
 msgid "Start"
-msgstr ""
+msgstr "Avvia"
 
 #: gui.py:330 gui.py:423
 msgid "Stop"
-msgstr ""
+msgstr "Ferma"
 
 #: gui.py:213 gui.py:214
 msgid "To make the vpn safe, regenerate the \"static.key\" security key (openvpn)."
-msgstr ""
+msgstr "Per mettere in sicurezza la vpn ,rigenerare il file \"static.key\" (chiave simmetrica openvpn)"
 
 #: gui.py:108
 msgid "Tools"
-msgstr ""
+msgstr "Strumenti"
 
 #: gui.py:278
 msgid "User:"
-msgstr ""
+msgstr "Utente:"
 
 #: gui.py:96
 msgid "VNC Server"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: gui.py:400
 msgid "View only"
-msgstr ""
+msgstr "Solo visualizzazione"
 
 #: gui.py:90
 msgid "Vpn"
@@ -179,7 +179,7 @@ msgstr ""
 
 #: gui.py:480
 msgid "Write here:"
-msgstr ""
+msgstr "Scrivi qui:"
 
 #: gui.py:389
 msgid "pobhelp123"

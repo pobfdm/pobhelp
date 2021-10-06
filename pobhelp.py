@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+
+
 import wx,wx.html,sys
 from gui import *
 from ftpd import *
@@ -14,8 +16,16 @@ import subprocess,os, urllib3 ,threading, ctypes,socket,time
 VERSION="0.1"
 
 import locale, gettext
-t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
-_ = t.gettext
+
+if (os.name=="nt"):
+	import gettext_windows
+	gettext_windows.setup_env()
+	
+try:
+	t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
+	_ = t.gettext
+except:
+	_ = t.gettext
 
 
 def find_procs_by_name(name):
@@ -65,6 +75,13 @@ def getScriptDir():
 
 class frmblackboard(TfrmBlackboard):
 	
+	def __init__( self, parent ):
+		TfrmBlackboard.__init__( self, parent )
+		self.SetTitle(_("Blackboard"))
+		self.lblWriteHere.SetLabel(_("Write here:"))
+		self.btClose.SetLabel(_("Close"))
+	
+	
 	def onclose(self,evt):
 		self.Hide()
 
@@ -76,6 +93,14 @@ class dialogVpnClient(TdlgVpnClient):
 	port=None
 	p=None
 	
+	def __init__( self, parent ):
+		TdlgVpnClient.__init__( self, parent )
+		self.lblHost.SetLabel(_("Host"))
+		self.lblPort.SetLabel(_("Port"))
+		self.btCancel.SetLabel(_("Cancel"))
+		self.btConnect.SetLabel(_("Connect"))
+		self.lblSafe.SetLabel(_("To make the vpn safe, regenerate the \"static.key\" security key (openvpn)."))
+		self.chkServerMode.SetLabel(_("Server mode"))
 	
 	def onText(self,evt):
 		p=self.txtVpn.GetCaretPosition()
@@ -153,13 +178,19 @@ class mainWin(TPobhelpGui):
 	p=None
 	
 	
-	def __init__( self, parent ):
+	def __init__( self,parent ):
 		TPobhelpGui.__init__( self, parent )
 		self.chkListen.SetLabel(_("Give help"))
 		self.lblHost.SetLabel(_("Hostname"))
 		self.lblPort.SetLabel(_("Port"))
 		self.btConnect.SetLabelMarkup(_("<b>Connect</b>"))
 		self.btDisconnect.SetLabelMarkup(_("<b>Disconnect</b>"))
+		#self.mnuTools.SetLabel(1,_("Tools"))
+		self.mnuItemBlackboard.SetItemLabel(_("Blackboard"))
+		self.mnuRemminaVNCI.SetItemLabel(_("Run Remmina inverse vnc"))
+		self.manuItemQuit.SetItemLabel(_("Quit"))
+		self.mnuItemAbout.SetItemLabel(_("About"))
+		
 	
 	def showBlackboard(self,evt):
 		self.blackboard.Show()

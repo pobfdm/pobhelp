@@ -20,14 +20,32 @@ class frmVncServer(TdlgVncServer):
 	cmd=None
 	p=None
 	
-	def init(self,evt):
+	def __init__( self, parent ):
+		
+		import locale, gettext
+		from pobhelp import getScriptDir
+		try:
+			t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
+			_ = t.gettext
+		except:
+			_ = t.gettext
+
+			
+			
+		TdlgVncServer.__init__( self, parent )
 		if (os.name=="nt"):
 			self.entryPassword.Disable()
 			self.entryPort.Disable()
 			self.entryPassword.SetValue("")
 			self.entryPort.SetValue("")
+		self.lblPort.SetLabel(_("Port:"))
+		self.chkViewOnly.SetLabel(_("View only"))
+		self.btStart.SetLabel(_("Start"))
+		self.btStop.SetLabel(_("Stop"))
 		
-	
+		
+		
+		
 	def onclose(self,evt):
 		self.Hide()
 		
