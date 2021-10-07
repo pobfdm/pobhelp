@@ -410,9 +410,11 @@ scale=1
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnviewer.exe", "-listen", "-port",self.entryPort.GetValue()])
 				self.entryPort.SetValue("5500")
-				thCmd = threading.Thread(target=self.runCmdWin ,args=(cmd,))
-				thCmd.daemon = True
-				thCmd.start()
+				#thCmd = threading.Thread(target=self.runCmdWin ,args=(cmd,))
+				#thCmd.daemon = True
+				#thCmd.start()
+				wx.CallAfter(self.statusBar.SetStatusText, "Listening...")
+				subprocess.Popen(cmd)
 				
 		else:
 			#Connect Mode
@@ -425,12 +427,14 @@ scale=1
 				thCmd.start()
 			
 			elif (os.name=="nt"):
-				self.startChecking=True
-				wx.CallAfter(self.statusBar.SetStatusText, "Connecting...")
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnserver.exe", "-controlservice",  "-connect", self.entryHost.GetValue()+"::"+self.entryPort.GetValue()])
-				thCmd = threading.Thread(target=self.runCmdWin ,args=(cmd,))
-				thCmd.daemon = True
-				thCmd.start()
+				wx.CallAfter(self.statusBar.SetStatusText, _("Connecting..."))
+				subprocess.Popen(cmd)
+				#self.startChecking=True
+				#wx.CallAfter(self.statusBar.SetStatusText, "Connecting...")
+				#thCmd = threading.Thread(target=self.runCmdWin ,args=(cmd,))
+				#thCmd.daemon = True
+				#thCmd.start()
 				
 				
 			
@@ -466,7 +470,7 @@ scale=1
 			
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnserver.exe","-controlservice", "-disconnectall" ])
-				p=subprocess.run(cmd,shell=True)
+				p=subprocess.Popen(cmd)
 				
 		
 	def runVpnClient(self,event):
