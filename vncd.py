@@ -28,7 +28,7 @@ class frmVncServer(TdlgVncServer):
 			t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
 			_ = t.gettext
 		except:
-			_ = t.gettext
+			_ = gettext.gettext
 
 			
 			

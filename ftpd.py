@@ -79,7 +79,8 @@ class dlgFTPD(TdlgFTPD):
 			t = gettext.translation('pobhelp', getScriptDir()+os.sep+'locale')
 			_ = t.gettext
 		except:
-			_ = t.gettext
+			_ = gettext.gettext
+			
 		TdlgFTPD.__init__( self, parent )
 		self.lblUser.SetLabel(_("User:"))
 		self.lblPort.SetLabel(_("Port:"))

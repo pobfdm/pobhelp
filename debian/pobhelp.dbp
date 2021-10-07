@@ -14,21 +14,22 @@ Description: Pobhelp is a simple gui that allows you to establish a reverse vnc 
 <</CTRL>>
 <<FILES>>
 1
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/LICENSE -> LICENSE -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/client.ovpn -> client.ovpn -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/ftpd.py -> ftpd.py -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.fbp -> gui.fbp -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.py -> gui.py -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/guiUtils.py -> guiUtils.py -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.ico -> lifesaver.ico -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.png -> lifesaver.png -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.svg -> lifesaver.svg -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.py -> pobhelp.py -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/server.ovpn -> server.ovpn -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/static.key -> static.key -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.desktop* -> pobhelp.desktop -> /usr/share/applications/
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp* -> pobhelp -> /usr/bin
 /home/fabio/Pacchetti/Pobhelp/source/PobHelp/vncd.py -> vncd.py -> /usr/lib/pobhelp
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp -> pobhelp -> /usr/bin
-/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.desktop -> pobhelp.desktop -> /usr/share/applications/
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/static.key -> static.key -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/server.ovpn -> server.ovpn -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/pobhelp.py* -> pobhelp.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.svg* -> lifesaver.svg -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.png* -> lifesaver.png -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/lifesaver.ico* -> lifesaver.ico -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/guiUtils.py -> guiUtils.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.py -> gui.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/gui.fbp -> gui.fbp -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/ftpd.py -> ftpd.py -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/client.ovpn -> client.ovpn -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/LICENSE* -> LICENSE -> /usr/lib/pobhelp
+/home/fabio/Pacchetti/Pobhelp/source/PobHelp/locale -> locale -> /usr/lib/pobhelp
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
