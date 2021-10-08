@@ -36,6 +36,7 @@ class frmVncServer(TdlgVncServer):
 		if (os.name=="nt"):
 			self.entryPassword.Disable()
 			self.entryPort.Disable()
+			self.chkViewOnly.Disable()
 			self.entryPassword.SetValue("")
 			self.entryPort.SetValue("")
 		self.lblPort.SetLabel(_("Port:"))
@@ -72,7 +73,8 @@ class frmVncServer(TdlgVncServer):
 		if (os.name=="posix"):
 			self.p.kill()
 		elif (os.name=="nt"):
-			kcmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe", "-controlapp","-shutdown"]
+			kcmd=(["taskkill","/im","tvnserver.exe","/f"])
+			#kcmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe", "-controlapp","-shutdown"]
 			p=subprocess.run(kcmd)
 			
 	def runProcessPosix(self):
@@ -89,7 +91,8 @@ class frmVncServer(TdlgVncServer):
 		
 	
 	def runProcessWin(self):
-		self.cmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe"  , "-run"]
-		self.p=subprocess.run(self.cmd)
-		self.cmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe"  , "-controlapp", "-sharefull"]
-		self.p=subprocess.run(self.cmd)
+		 self.cmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe"  , "-run"]
+		 self.p=subprocess.run(self.cmd)
+		 self.cmd=[getScriptDir()+"/TightVNC-bundle/tvnserver.exe"  , "-controlapp", "-sharefull"]
+		 self.p=subprocess.run(self.cmd)
+		

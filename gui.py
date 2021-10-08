@@ -11,6 +11,8 @@ import wx
 import wx.xrc
 import wx.richtext
 
+mainMenuId = 1000
+
 ###########################################################################
 ## Class TPobhelpGui
 ###########################################################################
@@ -48,7 +50,7 @@ class TPobhelpGui ( wx.Frame ):
 
 		bSizer1.Add( self.lblHost, 0, wx.ALL, 5 )
 
-		self.entryHost = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+		self.entryHost = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), wx.TE_PROCESS_TAB )
 		bSizer1.Add( self.entryHost, 0, wx.ALL|wx.EXPAND, 5 )
 
 		self.lblPort = wx.StaticText( self, wx.ID_ANY, u"Port", wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -56,7 +58,7 @@ class TPobhelpGui ( wx.Frame ):
 
 		bSizer1.Add( self.lblPort, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
-		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.entryPort = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PROCESS_TAB )
 		bSizer1.Add( self.entryPort, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 		self.btConnect = wx.Button( self, wx.ID_ANY, u"<b>Connect</b>", wx.DefaultPosition, wx.Size( 200,60 ), 0 )
@@ -73,18 +75,18 @@ class TPobhelpGui ( wx.Frame ):
 		self.statusBar = self.CreateStatusBar( 1, wx.STB_SIZEGRIP, wx.ID_ANY )
 		self.statusBar.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
-		self.m_menubar1 = wx.MenuBar( 0 )
+		self.menuBar = wx.MenuBar( 0 )
 		self.mnuFile = wx.Menu()
 		self.manuItemQuit = wx.MenuItem( self.mnuFile, wx.ID_ANY, u"Quit", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuFile.Append( self.manuItemQuit )
 
-		self.m_menubar1.Append( self.mnuFile, u"File" )
+		self.menuBar.Append( self.mnuFile, u"File" )
 
 		self.mnuVpn = wx.Menu()
 		self.mnuItemStartVpnClient = wx.MenuItem( self.mnuVpn, wx.ID_ANY, u"Vpn client/server", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuVpn.Append( self.mnuItemStartVpnClient )
 
-		self.m_menubar1.Append( self.mnuVpn, u"Vpn" )
+		self.menuBar.Append( self.mnuVpn, u"Vpn" )
 
 		self.mnuServers = wx.Menu()
 		self.mnuFTPserver = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"FTP server", wx.EmptyString, wx.ITEM_NORMAL )
@@ -93,7 +95,7 @@ class TPobhelpGui ( wx.Frame ):
 		self.mnuVncServer = wx.MenuItem( self.mnuServers, wx.ID_ANY, u"VNC Server", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuServers.Append( self.mnuVncServer )
 
-		self.m_menubar1.Append( self.mnuServers, u"Servers" )
+		self.menuBar.Append( self.mnuServers, u"Servers" )
 
 		self.mnuTools = wx.Menu()
 		self.mnuItemBlackboard = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Blackboard", wx.EmptyString, wx.ITEM_NORMAL )
@@ -102,15 +104,15 @@ class TPobhelpGui ( wx.Frame ):
 		self.mnuRemminaVNCI = wx.MenuItem( self.mnuTools, wx.ID_ANY, u"Run Remmina inverse vnc", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuTools.Append( self.mnuRemminaVNCI )
 
-		self.m_menubar1.Append( self.mnuTools, u"Tools" )
+		self.menuBar.Append( self.mnuTools, u"Tools" )
 
 		self.mnuHelp = wx.Menu()
 		self.mnuItemAbout = wx.MenuItem( self.mnuHelp, wx.ID_ANY, u"About", wx.EmptyString, wx.ITEM_NORMAL )
 		self.mnuHelp.Append( self.mnuItemAbout )
 
-		self.m_menubar1.Append( self.mnuHelp, u"Help" )
+		self.menuBar.Append( self.mnuHelp, u"Help" )
 
-		self.SetMenuBar( self.m_menubar1 )
+		self.SetMenuBar( self.menuBar )
 
 
 		self.Centre( wx.BOTH )
@@ -285,7 +287,7 @@ class TdlgFTPD ( wx.Dialog ):
 
 		bSizerUserPassword.Add( self.lblPassword, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PASSWORD )
+		self.entryPassword = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizerUserPassword.Add( self.entryPassword, 1, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
 

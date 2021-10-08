@@ -28,6 +28,9 @@ except:
 	_ = gettext.gettext
 
 
+
+
+
 def find_procs_by_name(name):
 	import psutil
 	ls = []
@@ -180,12 +183,14 @@ class mainWin(TPobhelpGui):
 	
 	def __init__( self,parent ):
 		TPobhelpGui.__init__( self, parent )
+		self.menuBar.SetMenuLabel(3, _("Tools"))
+		self.menuBar.SetMenuLabel(4, _("Help"))
+		
 		self.chkListen.SetLabel(_("Give help"))
 		self.lblHost.SetLabel(_("Hostname"))
 		self.lblPort.SetLabel(_("Port"))
 		self.btConnect.SetLabelMarkup(_("<b>Connect</b>"))
 		self.btDisconnect.SetLabelMarkup(_("<b>Disconnect</b>"))
-		#self.mnuTools.SetLabel(1,_("Tools"))
 		self.mnuItemBlackboard.SetItemLabel(_("Blackboard"))
 		self.mnuRemminaVNCI.SetItemLabel(_("Run Remmina inverse vnc"))
 		self.manuItemQuit.SetItemLabel(_("Quit"))
@@ -283,7 +288,7 @@ scale=1
 				if ("Listening" in str(line)):
 					wx.CallAfter(self.statusBar.SetStatusText, "Listening...")
 					
-			wx.CallAfter(self.statusBar.SetStatusText, "Disconnected.")	
+			wx.CallAfter(self.statusBar.SetStatusText, _("Disconnected."))	
 			wx.CallAfter(self.btConnect.Enable, True)
 			wx.CallAfter(self.btDisconnect.Enable, False)
 			wx.CallAfter(self.entryHost.Enable, True)
@@ -297,7 +302,7 @@ scale=1
 				if ("link_rate" in str(line)):
 					wx.CallAfter(self.statusBar.SetStatusText, "Connected.")
 					
-			wx.CallAfter(self.statusBar.SetStatusText, "Disconnected.")	
+			wx.CallAfter(self.statusBar.SetStatusText, _("Disconnected."))	
 			wx.CallAfter(self.btConnect.Enable, True)
 			wx.CallAfter(self.btDisconnect.Enable, False)
 			wx.CallAfter(self.entryHost.Enable, True)
@@ -316,7 +321,7 @@ scale=1
 					wx.CallAfter(self.statusBar.SetStatusText, "Listening...")
 				else:
 					startCheck=False
-					wx.CallAfter(self.statusBar.SetStatusText, "Disconnected.")	
+					wx.CallAfter(self.statusBar.SetStatusText, _("Disconnected."))	
 					wx.CallAfter(self.btConnect.Enable, True)
 					wx.CallAfter(self.btDisconnect.Enable, False)
 					wx.CallAfter(self.entryHost.Enable, True)
@@ -331,7 +336,7 @@ scale=1
 					wx.CallAfter(self.statusBar.SetStatusText, "Connected.")
 				else:
 					startCheck=False
-					wx.CallAfter(self.statusBar.SetStatusText, "Disconnected.")	
+					wx.CallAfter(self.statusBar.SetStatusText, _("Disconnected."))	
 					wx.CallAfter(self.btConnect.Enable, True)
 					wx.CallAfter(self.btDisconnect.Enable, False)
 					wx.CallAfter(self.entryHost.Enable, True)
@@ -416,6 +421,7 @@ scale=1
 				wx.CallAfter(self.statusBar.SetStatusText, "Listening...")
 				subprocess.Popen(cmd)
 				
+				
 		else:
 			#Connect Mode
 			if (os.name=="posix"):
@@ -458,6 +464,11 @@ scale=1
 				thCmd = threading.Thread(target=self.runCmd ,args=(cmd,))
 				thCmd.daemon = True
 				thCmd.start()
+				wx.CallAfter(self.statusBar.SetStatusText, _("Disconnected."))	
+				wx.CallAfter(self.btConnect.Enable, True)
+				wx.CallAfter(self.btDisconnect.Enable, False)
+				wx.CallAfter(self.entryHost.Enable, True)
+				wx.CallAfter(self.entryPort.Enable, True)	
 		else:
 			#Connect Mode
 			if (os.name=="posix"):
@@ -471,6 +482,11 @@ scale=1
 			elif (os.name=="nt"):
 				cmd=([getScriptDir()+"/TightVNC-bundle/tvnserver.exe","-controlservice", "-disconnectall" ])
 				p=subprocess.Popen(cmd)
+				wx.CallAfter(self.statusBar.SetStatusText, _(_("Disconnected.")))	
+				wx.CallAfter(self.btConnect.Enable, True)
+				wx.CallAfter(self.btDisconnect.Enable, False)
+				wx.CallAfter(self.entryHost.Enable, True)
+				wx.CallAfter(self.entryPort.Enable, True)	
 				
 		
 	def runVpnClient(self,event):
@@ -507,8 +523,8 @@ if __name__ == '__main__':
 	win.blackboard=frmblackboard(win)
 	win.blackboard.SetIcon(wx.Icon(getScriptDir()+"/lifesaver.ico"))
 	
-	if (os.name=="nt"):
-		win.mnuVncServer.Enable(False)
+	#if (os.name=="nt"):
+	#	win.mnuVncServer.Enable(False)
 	
 	
 	
